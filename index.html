@@ -3,26 +3,95 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Kartheek | Cybersecurity Portfolio</title>
+  <title>Kartheek Reddy Nallamilli | Cybersecurity Portfolio</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
+    :root {
+      --bg: #0f172a;
+      --text: #f8fafc;
+      --card-bg: rgba(30, 41, 59, 0.75);
+      --footer-bg: rgba(30, 41, 59, 0.8);
+    }
+    body.light-mode {
+      --bg: #ffffff;
+      --text: #0f172a;
+      --card-bg: rgba(240, 240, 240, 0.75);
+      --footer-bg: rgba(240, 240, 240, 0.9);
+    }
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: #0f172a;
-      color: #f8fafc;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+      transition: background 0.5s, color 0.5s;
+    }
+    #modeToggle {
+      position: fixed;
+      top: 20px;
+      left: 20px;
+      z-index: 1001;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    #modeToggle input[type="checkbox"] {
+      width: 40px;
+      height: 20px;
+      appearance: none;
+      background: #ccc;
+      border-radius: 10px;
+      position: relative;
+      cursor: pointer;
+    }
+    #modeToggle input[type="checkbox"]:checked {
+      background: #4f5bd5;
+    }
+    #modeToggle input[type="checkbox"]::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 16px;
+      height: 16px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.3s;
+    }
+    #modeToggle input[type="checkbox"]:checked::before {
+      transform: translateX(20px);
+    }
+    #hex-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: -1;
+      overflow: hidden;
+    }
+    #hex-bg canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
     }
     header {
       padding: 2rem;
       text-align: center;
-      background: #1e293b;
+      background: var(--footer-bg);
+      backdrop-filter: blur(6px);
     }
     h1 {
       font-size: 2.5rem;
       margin-bottom: 0.5rem;
     }
     h2 {
-      color: #38bdf8;
+      background: linear-gradient(90deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      color: transparent;
     }
     section {
       padding: 2rem;
@@ -30,28 +99,101 @@
       margin: auto;
     }
     .card {
-      background: #1e293b;
+      background: var(--card-bg);
       padding: 1.5rem;
       border-radius: 1rem;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
       margin-bottom: 1.5rem;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .card:hover {
+      transform: scale(1.02);
+      box-shadow: 0 0 25px rgba(253, 29, 29, 0.5);
     }
     a {
-      color: #38bdf8;
       text-decoration: none;
+    }
+    .button-link {
+      background: rgba(255, 255, 255, 0.1);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      margin: 0.5rem;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--text);
+      transition: background 0.5s ease, transform 0.2s ease;
+      display: inline-block;
+      width: 180px;
+      text-align: center;
+    }
+    .button-link i {
+      margin-right: 0.5rem;
+    }
+    .button-link:hover {
+      background: linear-gradient(90deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+      color: #fff;
+      transform: scale(1.05);
+    }
+    #topBtn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(90deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 1.2rem;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      z-index: 1000;
+    }
+    iframe {
+      width: 100%;
+      height: 300px;
+      border: 0;
+      border-radius: 1rem;
+      margin-top: 1rem;
     }
     footer {
       text-align: center;
       padding: 2rem;
-      background: #1e293b;
+      background: var(--footer-bg);
       font-size: 0.9rem;
       color: #94a3b8;
+      backdrop-filter: blur(6px);
     }
-  </style>
+    @keyframes bounce {
+    0% { transform: rotate(-20deg) translateY(0); }
+    100% { transform: rotate(-20deg) translateY(5px); }
+  }
+  #desertCanvas {
+    display: block;
+    width: 100%;
+    height: 300px;
+  }
+</style>
 </head>
-<body>
+<body class="night-mode">
+  <div id="modeToggle">
+    <label for="modeSwitch">
+      <i id="modeIcon" class="fas fa-moon" style="color: var(--text);"></i>
+    </label>
+    <input type="checkbox" id="modeSwitch">
+    <div id="tryMe" style="display: flex; flex-direction: column; align-items: center; margin-left: 10px;">
+  <span style="font-size: 0.9rem; color: var(--text); font-weight: bold; margin-bottom: 2px;">Try Me!</span>
+  <span style="font-size: 1.5rem; color: var(--text); transform: rotate(-20deg); animation: bounce 1s infinite alternate ease-in-out;">⬇️</span>
+</div>
+  </div>
+  <div id="hex-bg">
+    <canvas id="hexCanvas"></canvas>
+  </div>
+  <button id="topBtn" onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"><i class="fas fa-arrow-up"></i></button>
+
   <header>
-    <h1>Kartheek</h1>
+    <h1>Kartheek Reddy Nallamilli</h1>
     <p>Cybersecurity Student | Ethical Hacking | Encryption | Digital Forensics</p>
   </header>
 
@@ -76,15 +218,220 @@
     </div>
 
     <h2>Contact</h2>
+    <div class="card" style="text-align: center;">
+      <a class="button-link" href="mailto:kartheek@example.com"><i class="fas fa-envelope"></i>Email Me</a>
+      <a class="button-link" href="https://github.com/kartheek" target="_blank"><i class="fab fa-github"></i>GitHub</a>
+      <a class="button-link" href="https://linkedin.com/in/kartheek" target="_blank"><i class="fab fa-linkedin"></i>LinkedIn</a>
+    </div>
+
+    <h2>My Location</h2>
     <div class="card">
-      <p>Email: <a href="mailto:kartheek@example.com">kartheek@example.com</a></p>
-      <p>GitHub: <a href="https://github.com/kartheek">github.com/kartheek</a></p>
-      <p>LinkedIn: <a href="https://linkedin.com/in/kartheek">linkedin.com/in/kartheek</a></p>
+      <p>I am currently based in Llandaff, Cardiff.</p>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2436.892353569763!2d-3.2215091840892815!3d51.4937810796331!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x486e1cb697d5d56d%3A0x3fda6a2a4b801edf!2sLlandaff%2C%20Cardiff!5e0!3m2!1sen!2suk!4v1711944073433!5m2!1sen!2suk" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <h2>Procedural Generation</h2>
+    <p style="font-family: 'Comic Sans MS', cursive, sans-serif; font-size: 0.9rem; color: var(--text); margin-top: -10px;">
+      "What if the desert had a secret oasis? 🌴💧"
+    </p>
+    <div class="card" style="position: relative; height: 300px;">
+      <canvas id="desertCanvas" style="width: 100%; height: 300px;"></canvas>
     </div>
   </section>
 
   <footer>
-    &copy; 2025 Kartheek. All rights reserved.
+    &copy; 2025 Kartheek Reddy Nallamilli. All rights reserved.
   </footer>
+
+  <script>
+    const canvas = document.getElementById("hexCanvas");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const hexagons = [];
+    for (let i = 0; i < 60; i++) {
+      hexagons.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        r: 12 + Math.random() * 8,
+        dx: (Math.random() - 0.5) * 0.5,
+        dy: (Math.random() - 0.5) * 0.5,
+      });
+    }
+
+    function drawHexagon(x, y, r) {
+      ctx.beginPath();
+      for (let i = 0; i < 6; i++) {
+        const angle = (Math.PI / 3) * i;
+        const px = x + r * Math.cos(angle);
+        const py = y + r * Math.sin(angle);
+        if (i === 0) ctx.moveTo(px, py);
+        else ctx.lineTo(px, py);
+      }
+      ctx.closePath();
+      ctx.strokeStyle = getComputedStyle(document.body).getPropertyValue('--text') + '0.07';
+      ctx.stroke();
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      hexagons.forEach(h => {
+        drawHexagon(h.x, h.y, h.r);
+        h.x += h.dx;
+        h.y += h.dy;
+
+        if (h.x < 0 || h.x > canvas.width) h.dx *= -1;
+        if (h.y < 0 || h.y > canvas.height) h.dy *= -1;
+      });
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    // Toggle light/dark mode
+    const modeSwitch = document.getElementById('modeSwitch');
+    const modeIcon = document.getElementById('modeIcon');
+    modeSwitch.addEventListener('change', () => {
+      document.body.classList.toggle('light-mode', modeSwitch.checked);
+      modeIcon.className = modeSwitch.checked ? 'fas fa-sun' : 'fas fa-moon';
+      animate(); // Re-render hexagons with updated color
+    });
+
+    // Procedural Desert Canvas
+    const desertCanvas = document.getElementById("desertCanvas");
+    if (desertCanvas) {
+      const dctx = desertCanvas.getContext("2d");
+      function resizeDesertCanvas() {
+        desertCanvas.width = desertCanvas.clientWidth;
+        desertCanvas.height = 300;
+      }
+      resizeDesertCanvas();
+      window.addEventListener("resize", resizeDesertCanvas);
+
+      let offset = 0; // Offset for smooth movement
+      const fauna = []; // Array to store predefined positions of trees and cacti
+
+      function getTerrainHeight(x, offset, h) {
+        // Calculate the terrain height at a given x position
+        return h - 50 - Math.sin((x + offset) * 0.01) * 20 - Math.cos((x + offset) * 0.02) * 10;
+      }
+
+      function initializeFauna() {
+        const w = desertCanvas.width;
+        const h = desertCanvas.height;
+        fauna.length = 0; // Clear existing fauna
+        for (let i = 0; i < 10; i++) {
+          const x = Math.random() * w;
+          const y = getTerrainHeight(x, 0, h); // Align fauna with terrain
+          fauna.push({ x, y, type: i % 2 === 0 ? 'tree' : 'cactus' });
+        }
+      }
+
+      function drawTree(x, y) {
+        // Draw trunk
+        dctx.fillStyle = "#8B4513";
+        dctx.fillRect(x - 5, y - 40, 10, 40);
+
+        // Draw leaves
+        dctx.fillStyle = "#228B22";
+        dctx.beginPath();
+        dctx.arc(x, y - 50, 20, 0, Math.PI * 2); // Bottom layer
+        dctx.arc(x, y - 70, 15, 0, Math.PI * 2); // Middle layer
+        dctx.arc(x, y - 85, 10, 0, Math.PI * 2); // Top layer
+        dctx.fill();
+      }
+
+      function drawCactus(x, y) {
+        // Draw main body
+        dctx.fillStyle = "#228B22";
+        dctx.beginPath();
+        dctx.roundRect(x - 5, y - 50, 10, 50, 5); // Rounded rectangle for the main body
+        dctx.fill();
+
+        // Draw left arm
+        dctx.beginPath();
+        dctx.roundRect(x - 15, y - 40, 10, 20, 5); // Rounded rectangle for the left arm
+        dctx.fill();
+
+        // Draw right arm
+        dctx.beginPath();
+        dctx.roundRect(x + 5, y - 40, 10, 20, 5); // Rounded rectangle for the right arm
+        dctx.fill();
+
+        // Add cactus spikes
+        dctx.strokeStyle = "#FFFFFF";
+        dctx.lineWidth = 1;
+        for (let i = 0; i < 10; i++) {
+          const spikeX = x - 5 + Math.random() * 10;
+          const spikeY = y - 50 + Math.random() * 50;
+          dctx.beginPath();
+          dctx.moveTo(spikeX, spikeY);
+          dctx.lineTo(spikeX + 2, spikeY - 2);
+          dctx.stroke();
+        }
+      }
+
+      function drawDesert() {
+        const w = desertCanvas.width;
+        const h = desertCanvas.height;
+        dctx.clearRect(0, 0, w, h);
+
+        // Sky
+        const gradient = dctx.createLinearGradient(0, 0, 0, h);
+        gradient.addColorStop(0, "#fcd34d");
+        gradient.addColorStop(1, "#fde68a");
+        dctx.fillStyle = gradient;
+        dctx.fillRect(0, 0, w, h);
+
+        // Hills
+        dctx.fillStyle = "#fbbf24";
+        dctx.beginPath();
+        dctx.moveTo(0, h);
+        for (let x = 0; x <= w; x++) {
+          const y = getTerrainHeight(x, offset, h);
+          dctx.lineTo(x, y);
+        }
+        dctx.lineTo(w, h);
+        dctx.closePath();
+        dctx.fill();
+
+        // Smaller Hills
+        dctx.fillStyle = "#f59e0b";
+        dctx.beginPath();
+        dctx.moveTo(0, h);
+        for (let x = 0; x <= w; x++) {
+          const y = h - 30 - Math.sin((x + offset) * 0.02) * 10;
+          dctx.lineTo(x, y);
+        }
+        dctx.lineTo(w, h);
+        dctx.closePath();
+        dctx.fill();
+
+        // Draw predefined trees and cacti
+        fauna.forEach(f => {
+          const x = (f.x - offset + w) % w; // Wrap fauna around the canvas
+          const y = getTerrainHeight(x, offset, h); // Align flora with terrain dynamically
+          if (x > 0 && x < w) { // Only draw if visible on canvas
+            if (f.type === 'tree') drawTree(x, y);
+            else drawCactus(x, y);
+          }
+        });
+
+        offset += 0.5; // Smooth and slower movement
+        requestAnimationFrame(drawDesert);
+      }
+
+      initializeFauna(); // Initialize fauna positions
+      drawDesert();
+      window.addEventListener("resize", () => {
+        resizeDesertCanvas();
+        initializeFauna(); // Reinitialize fauna on resize
+      });
+    }
+  </script>
 </body>
 </html>
