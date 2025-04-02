@@ -174,6 +174,28 @@
     width: 100%;
     height: 300px;
   }
+  .tab-button {
+    background: var(--card-bg);
+    color: var(--text);
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0 0.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s ease, transform 0.2s ease;
+  }
+  .tab-button:hover {
+    background: linear-gradient(90deg, #feda75, #fa7e1e, #d62976, #962fbf, #4f5bd5);
+    color: #fff;
+    transform: scale(1.05);
+  }
+  .tab-content {
+    display: none;
+  }
+  .tab-content.active {
+    display: block;
+  }
 </style>
 </head>
 <body class="night-mode">
@@ -231,10 +253,21 @@
     </div>
     <h2>Procedural Generation</h2>
     <p style="font-family: 'Comic Sans MS', cursive, sans-serif; font-size: 0.9rem; color: var(--text); margin-top: -10px;">
-      "What if the desert had a secret oasis? 🌴💧"
+      "A fun little idea 🌵✨"
     </p>
-    <div class="card" style="position: relative; height: 300px;">
-      <canvas id="desertCanvas" style="width: 100%; height: 300px;"></canvas>
+    <div style="display: flex; justify-content: center; margin-bottom: 1rem;">
+      <button class="tab-button" onclick="showTab('desert')">The Desert</button>
+      <button class="tab-button" onclick="showTab('ocean')">The Ocean</button>
+    </div>
+    <div id="desert" class="tab-content active">
+      <div class="card" style="position: relative; height: 300px;">
+        <canvas id="desertCanvas" style="width: 100%; height: 300px;"></canvas>
+      </div>
+    </div>
+    <div id="ocean" class="tab-content">
+      <div class="card" style="position: relative; height: 300px;">
+        <canvas id="oceanCanvas" style="width: 100%; height: 300px;"></canvas>
+      </div>
     </div>
   </section>
 
@@ -431,6 +464,71 @@
         resizeDesertCanvas();
         initializeFauna(); // Reinitialize fauna on resize
       });
+    }
+
+    // Procedural Ocean Canvas
+    const oceanCanvas = document.getElementById("oceanCanvas");
+    if (oceanCanvas) {
+      const octx = oceanCanvas.getContext("2d");
+
+      function resizeOceanCanvas() {
+        oceanCanvas.width = oceanCanvas.offsetWidth; // Ensure proper canvas width
+        oceanCanvas.height = 300; // Fixed height for the ocean canvas
+      }
+      resizeOceanCanvas();
+      window.addEventListener("resize", resizeOceanCanvas);
+
+      let offset = 0; // Offset for random motion
+
+      function drawSeabed() {
+        const w = oceanCanvas.width;
+        const h = oceanCanvas.height;
+        octx.fillStyle = "#8B4513"; // Seabed color
+        octx.beginPath();
+        octx.moveTo(0, h);
+        for (let x = 0; x <= w; x++) {
+          const y = h - 20 - Math.sin((x + offset) * 0.02) * 10 - Math.cos((x + offset) * 0.04) * 5;
+          octx.lineTo(x, y);
+        }
+        octx.lineTo(w, h);
+        octx.closePath();
+        octx.fill();
+      }
+
+      function drawOcean() {
+        const w = oceanCanvas.width;
+        const h = oceanCanvas.height;
+        octx.clearRect(0, 0, w, h);
+
+        // Draw water background
+        const gradient = octx.createLinearGradient(0, 0, 0, h);
+        gradient.addColorStop(0, "#1E90FF");
+        gradient.addColorStop(1, "#00BFFF");
+        octx.fillStyle = gradient;
+        octx.fillRect(0, 0, w, h);
+
+        // Draw seabed
+        drawSeabed();
+
+        offset += 0.5; // Increment offset for random motion
+        requestAnimationFrame(drawOcean);
+      }
+
+      drawOcean();
+    }
+
+    function showTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      document.getElementById(tabId).classList.add('active');
+
+      // Ensure canvas resizing is triggered when switching tabs
+      if (tabId === 'ocean') {
+        resizeOceanCanvas();
+      } else if (tabId === 'desert') {
+        resizeDesertCanvas();
+      }
     }
   </script>
 </body>
