@@ -258,6 +258,8 @@
     <div style="display: flex; justify-content: center; margin-bottom: 1rem;">
       <button class="tab-button" onclick="showTab('desert')">The Desert</button>
       <button class="tab-button" onclick="showTab('ocean')">The Ocean</button>
+      <button class="tab-button" onclick="showTab('protein')">Protein Cloud</button>
+      <button class="tab-button" onclick="showTab('stormy')">Stormy Clouds</button>
     </div>
     <div id="desert" class="tab-content active">
       <div class="card" style="position: relative; height: 300px;">
@@ -267,6 +269,16 @@
     <div id="ocean" class="tab-content">
       <div class="card" style="position: relative; height: 300px;">
         <canvas id="oceanCanvas" style="width: 100%; height: 300px;"></canvas>
+      </div>
+    </div>
+    <div id="protein" class="tab-content">
+      <div class="card" style="position: relative; height: 300px;">
+        <canvas id="proteinCanvas" style="width: 100%; height: 300px;"></canvas>
+      </div>
+    </div>
+    <div id="stormy" class="tab-content">
+      <div class="card" style="position: relative; height: 300px;">
+        <canvas id="stormyCanvas" style="width: 100%; height: 300px;"></canvas>
       </div>
     </div>
   </section>
@@ -472,22 +484,95 @@
       const octx = oceanCanvas.getContext("2d");
 
       function resizeOceanCanvas() {
-        oceanCanvas.width = oceanCanvas.offsetWidth; // Ensure proper canvas width
-        oceanCanvas.height = 300; // Fixed height for the ocean canvas
+        oceanCanvas.width = oceanCanvas.clientWidth;
+        oceanCanvas.height = 300;
       }
+
       resizeOceanCanvas();
       window.addEventListener("resize", resizeOceanCanvas);
 
-      let offset = 0; // Offset for random motion
+      let waveOffset = 0;
+      const waveAmplitude = 10;
+      const waveLength = 0.02;
+
+      const fishes = [];
+      const plants = [];
+
+      function initializeAquaticLife() {
+        const w = oceanCanvas.width;
+        const h = oceanCanvas.height;
+
+        // Initialize fishes
+        fishes.length = 0;
+        for (let i = 0; i < 10; i++) {
+          fishes.push({
+            x: Math.random() * w,
+            y: Math.random() * (h - 100) + 50,
+            size: Math.random() * 10 + 5,
+            speed: Math.random() * 1 + 0.5,
+            direction: Math.random() > 0.5 ? 1 : -1,
+          });
+        }
+
+        // Initialize plants
+        plants.length = 0;
+        for (let i = 0; i < 8; i++) {
+          plants.push({
+            x: Math.random() * w,
+            height: Math.random() * 40 + 20,
+          });
+        }
+      }
+
+      function drawFish(fish) {
+        octx.fillStyle = "#FF4500";
+        octx.beginPath();
+        octx.ellipse(fish.x, fish.y, fish.size, fish.size / 2, 0, 0, Math.PI * 2);
+        octx.fill();
+
+        // Draw tail
+        octx.beginPath();
+        octx.moveTo(fish.x - fish.size * fish.direction, fish.y);
+        octx.lineTo(fish.x - fish.size * 1.5 * fish.direction, fish.y - fish.size / 2);
+        octx.lineTo(fish.x - fish.size * 1.5 * fish.direction, fish.y + fish.size / 2);
+        octx.closePath();
+        octx.fill();
+      }
+
+      function drawPlant(plant) {
+        octx.strokeStyle = "#228B22";
+        octx.lineWidth = 2;
+        octx.beginPath();
+        octx.moveTo(plant.x, oceanCanvas.height);
+        octx.lineTo(plant.x, oceanCanvas.height - plant.height);
+        octx.stroke();
+      }
+
+      function drawWaves() {
+        const w = oceanCanvas.width;
+        const h = oceanCanvas.height;
+        octx.fillStyle = "rgba(255, 255, 255, 0.3)";
+        for (let i = 0; i < 3; i++) {
+          octx.beginPath();
+          octx.moveTo(0, h);
+          for (let x = 0; x <= w; x++) {
+            const y = h - 60 - i * 20 + Math.sin((x + waveOffset + i * 100) * waveLength) * waveAmplitude;
+            octx.lineTo(x, y);
+          }
+          octx.lineTo(w, h);
+          octx.closePath();
+          octx.fill();
+        }
+      }
 
       function drawSeabed() {
         const w = oceanCanvas.width;
         const h = oceanCanvas.height;
-        octx.fillStyle = "#8B4513"; // Seabed color
+        octx.fillStyle = "#8B4513";
         octx.beginPath();
         octx.moveTo(0, h);
         for (let x = 0; x <= w; x++) {
-          const y = h - 20 - Math.sin((x + offset) * 0.02) * 10 - Math.cos((x + offset) * 0.04) * 5;
+          const y = h - 20 - Math.sin((x + waveOffset) * 0.02) * 10 - Math.cos((x + waveOffset) * 0.04) * 5;
           octx.lineTo(x, y);
         }
         octx.lineTo(w, h);
@@ -500,21 +585,200 @@
         const h = oceanCanvas.height;
         octx.clearRect(0, 0, w, h);
 
-        // Draw water background
         const gradient = octx.createLinearGradient(0, 0, 0, h);
         gradient.addColorStop(0, "#1E90FF");
         gradient.addColorStop(1, "#00BFFF");
         octx.fillStyle = gradient;
         octx.fillRect(0, 0, w, h);
 
-        // Draw seabed
+        drawWaves();
         drawSeabed();
 
-        offset += 0.5; // Increment offset for random motion
+        // Draw plants
+        plants.forEach(drawPlant);
+
+        // Draw fishes
+        fishes.forEach(fish => {
+          drawFish(fish);
+          fish.x += fish.speed * fish.direction;
+
+          // Wrap fish around the canvas
+          if (fish.x < 0) fish.x = w;
+          if (fish.x > w) fish.x = 0;
+        });
+
+        waveOffset += 0.5;
         requestAnimationFrame(drawOcean);
       }
 
+      initializeAquaticLife();
       drawOcean();
+      window.addEventListener("resize", () => {
+        resizeOceanCanvas();
+        initializeAquaticLife();
+      });
+    }
+
+    // Procedural Protein Cloud Canvas
+    const proteinCanvas = document.getElementById("proteinCanvas");
+    if (proteinCanvas) {
+      const pctx = proteinCanvas.getContext("2d");
+
+      function resizeProteinCanvas() {
+        proteinCanvas.width = proteinCanvas.clientWidth;
+        proteinCanvas.height = 300;
+      }
+
+      resizeProteinCanvas();
+      window.addEventListener("resize", resizeProteinCanvas);
+
+      const proteins = [];
+
+      function initializeProteins() {
+        const w = proteinCanvas.width;
+        const h = proteinCanvas.height;
+
+        proteins.length = 0;
+        for (let i = 0; i < 20; i++) {
+          proteins.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            size: Math.random() * 20 + 10,
+            speedX: (Math.random() - 0.5) * 2,
+            speedY: (Math.random() - 0.5) * 2,
+            color: `hsl(${Math.random() * 360}, 70%, 60%)`,
+          });
+        }
+      }
+
+      function drawProtein(protein) {
+        pctx.fillStyle = protein.color;
+        pctx.beginPath();
+        pctx.arc(protein.x, protein.y, protein.size, 0, Math.PI * 2);
+        pctx.fill();
+      }
+
+      function drawProteinCloud() {
+        const w = proteinCanvas.width;
+        const h = proteinCanvas.height;
+        pctx.clearRect(0, 0, w, h);
+
+        proteins.forEach(protein => {
+          drawProtein(protein);
+          protein.x += protein.speedX;
+          protein.y += protein.speedY;
+
+          // Wrap proteins around the canvas
+          if (protein.x < 0) protein.x = w;
+          if (protein.x > w) protein.x = 0;
+          if (protein.y < 0) protein.y = h;
+          if (protein.y > h) protein.y = 0;
+        });
+
+        requestAnimationFrame(drawProteinCloud);
+      }
+
+      initializeProteins();
+      drawProteinCloud();
+      window.addEventListener("resize", () => {
+        resizeProteinCanvas();
+        initializeProteins();
+      });
+    }
+
+    // Procedural Stormy Clouds Canvas
+    const stormyCanvas = document.getElementById("stormyCanvas");
+    if (stormyCanvas) {
+      const sctx = stormyCanvas.getContext("2d");
+
+      function resizeStormyCanvas() {
+        stormyCanvas.width = stormyCanvas.clientWidth;
+        stormyCanvas.height = 300;
+      }
+
+      resizeStormyCanvas();
+      window.addEventListener("resize", resizeStormyCanvas);
+
+      const clouds = [];
+      let lightningTimer = 0;
+
+      function initializeClouds() {
+        const w = stormyCanvas.width;
+        const h = stormyCanvas.height;
+
+        clouds.length = 0;
+        for (let i = 0; i < 10; i++) {
+          clouds.push({
+            x: Math.random() * w,
+            y: Math.random() * (h / 2),
+            size: Math.random() * 50 + 50,
+            speed: Math.random() * 0.5 + 0.2,
+            opacity: Math.random() * 0.5 + 0.5,
+          });
+        }
+      }
+
+      function drawCloud(cloud) {
+        sctx.fillStyle = `rgba(50, 50, 50, ${cloud.opacity})`;
+        sctx.beginPath();
+        sctx.arc(cloud.x, cloud.y, cloud.size, 0, Math.PI * 2);
+        sctx.fill();
+      }
+
+      function drawLightning() {
+        const w = stormyCanvas.width;
+        const h = stormyCanvas.height;
+
+        if (Math.random() < 0.02) {
+          sctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+          sctx.fillRect(0, 0, w, h);
+          lightningTimer = 5; // Flash duration
+        }
+
+        if (lightningTimer > 0) {
+          lightningTimer--;
+        }
+      }
+
+      function drawStormyClouds() {
+        const w = stormyCanvas.width;
+        const h = stormyCanvas.height;
+        sctx.clearRect(0, 0, w, h);
+
+        // Draw dark background
+        const gradient = sctx.createLinearGradient(0, 0, 0, h);
+        gradient.addColorStop(0, "#1a1a1a");
+        gradient.addColorStop(1, "#000000");
+        sctx.fillStyle = gradient;
+        sctx.fillRect(0, 0, w, h);
+
+        // Draw clouds
+        clouds.forEach(cloud => {
+          drawCloud(cloud);
+          cloud.x -= cloud.speed;
+
+          // Wrap clouds around the canvas
+          if (cloud.x + cloud.size < 0) {
+            cloud.x = w + cloud.size;
+            cloud.y = Math.random() * (h / 2);
+            cloud.size = Math.random() * 50 + 50;
+            cloud.speed = Math.random() * 0.5 + 0.2;
+            cloud.opacity = Math.random() * 0.5 + 0.5;
+          }
+        });
+
+        // Draw lightning
+        drawLightning();
+
+        requestAnimationFrame(drawStormyClouds);
+      }
+
+      initializeClouds();
+      drawStormyClouds();
+      window.addEventListener("resize", () => {
+        resizeStormyCanvas();
+        initializeClouds();
+      });
     }
 
     function showTab(tabId) {
@@ -528,6 +792,10 @@
         resizeOceanCanvas();
       } else if (tabId === 'desert') {
         resizeDesertCanvas();
+      } else if (tabId === 'protein') {
+        resizeProteinCanvas();
+      } else if (tabId === 'stormy') {
+        resizeStormyCanvas();
       }
     }
   </script>
