@@ -1,346 +1,425 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kartheek's Personal Website</title>
-    <!-- Load Tailwind CSS from CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Set a custom font -->
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .hero-bg {
-            background: radial-gradient(circle at top, #2d3748, #1a202c);
-            position: relative;
-            overflow: hidden;
-        }
-        .hero-bg::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: radial-gradient(circle, #3c465a 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.1;
-            animation: move-bg 60s linear infinite;
-        }
-        @keyframes move-bg {
-            from { background-position: 0 0; }
-            to { background-position: 100% 100%; }
-        }
-        .section-bg {
-            background-color: #2d3748;
-            background-image: radial-gradient(#3c465a 1px, transparent 1px);
-            background-size: 20px 20px;
-        }
-        .text-neon-cyan {
-            color: #00d2ff;
-        }
-        .card {
-            border-radius: 1rem;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transform: translateY(20px);
-            opacity: 0;
-            transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.3s ease-in-out;
-        }
-        .card:hover {
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            transform: translateY(-5px);
-        }
-        .card.is-visible {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        .social-link, .nav-link, #menu-button, #close-menu {
-            transition: transform 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-        }
-        .social-link:hover, .nav-link:hover, #menu-button:hover, #close-menu:hover {
-            transform: translateY(-2px) scale(1.1);
-            color: #fff;
-            box-shadow: 0 0 5px #00d2ff, 0 0 10px #00d2ff;
-        }
-        .social-link:hover {
-            transform: translateY(-5px) scale(1.1);
-            color: #00d2ff;
-        }
-        .nav-link:hover {
-            transform: translateY(-2px);
-            color: #fff;
-        }
-        @keyframes glowing {
-            0% { box-shadow: 0 0 5px #00d2ff, 0 0 10px #00d2ff; }
-            50% { box-shadow: 0 0 20px #00d2ff, 0 0 40px #00d2ff; }
-            100% { box-shadow: 0 0 5px #00d2ff, 0 0 10px #00d2ff; }
-        }
-        .glow-effect {
-            animation: glowing 3s infinite alternate;
-        }
-        .animate-fade-in {
-            animation: fadeIn 1.5s ease-in-out;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .fade-slide-up {
-            transform: translateY(20px);
-            opacity: 0;
-            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-        }
-        .fade-slide-up.is-visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Kartheek Reddy — Cybersecurity Portfolio</title>
+  <meta name="description" content="MSc Advanced Cyber Security student at Cardiff Met. Projects in crypto & stego, malware analysis, and QA testing. Open to internships and collaborations." />
+  <link rel="canonical" href="https://kartheekreddy.com/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta property="og:title" content="Kartheek Reddy — Cybersecurity Portfolio" />
+  <meta property="og:description" content="MSc Advanced Cyber Security @ Cardiff Met. Pen testing, DFIR, and crypto projects." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kartheekreddy.com/" />
+  <meta property="og:image" content="https://kartheekreddy.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Kartheek Reddy — Cybersecurity Portfolio" />
+  <meta name="twitter:description" content="Cybersecurity student @ Cardiff Met. Crypto, stego, DFIR & security tooling." />
+  <meta name="twitter:image" content="https://kartheekreddy.com/og-image.png" />
+  <meta name="theme-color" content="#0ea5e9" />
+  <style>
+    :root{
+      --primary: #00d2ff;
+      --accent: #a855f7;
+      --bg-dark: #0b1220;
+      --bg-mid: #131c2b;
+      --card: #1b2434;
+      --ring: rgba(0,210,255,.25);
+    }
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,'Apple Color Emoji','Segoe UI Emoji';}
+    .hero-gradient{background:radial-gradient(1200px 600px at 50% -10%,rgba(168,85,247,.25),transparent 60%),radial-gradient(1200px 600px at 10% 10%,rgba(14,165,233,.2),transparent 60%),linear-gradient(180deg,#0b1220,#0b1220)}
+    .grid-dots{background-image: radial-gradient(#243045 1px, transparent 1px);background-size: 22px 22px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));border:1px solid rgba(255,255,255,.06)}
+    .focus-ring:focus-visible{outline:none;box-shadow:0 0 0 6px var(--ring)}
+    @media (prefers-reduced-motion: no-preference){
+      .fade-up{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+      .fade-up.is-visible{opacity:1;transform:none}
+    }
+  </style>
+  <!-- Structured data (Person) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Nallamilli Satya Sai Kartheek Reddy",
+    "alternateName": "Kartheek Reddy",
+    "url": "https://kartheekreddy.com/",
+    "jobTitle": "MSc Advanced Cyber Security Student",
+    "affiliation": {"@type":"CollegeOrUniversity","name":"Cardiff Metropolitan University"},
+    "email": "mailto:kartheekreddy@outlook.in",
+    "sameAs": [
+      "https://www.linkedin.com/in/kartheek-nallamilli/",
+      "https://github.com/KartheekReddy100",
+      "https://tryhackme.com/r/p/azhday"
+    ]
+  }
+  </script>
 </head>
-<body class="bg-gray-900 text-gray-200 overflow-x-hidden">
+<body class="bg-[var(--bg-dark)] text-slate-200 selection:bg-cyan-500/30">
+  <!-- Skip link -->
+  <a href="#main" class="sr-only focus:not-sr-only focus-ring fixed z-50 top-2 left-2 bg-cyan-600 text-white px-3 py-2 rounded-lg">Skip to content</a>
 
-    <!-- Header & Navigation -->
-    <header class="fixed top-0 left-0 w-full z-20 p-4 transition-all duration-300 ease-in-out">
-        <nav class="container mx-auto flex justify-between items-center bg-gray-800/50 p-4 rounded-full border border-gray-700/50 backdrop-blur-sm">
-            <a href="#" class="text-xl font-bold text-white tracking-wide">
-                Kartheek
-            </a>
-            <div class="space-x-4 md:space-x-8 hidden md:flex">
-                <a href="#about" class="text-gray-400 hover:text-white transition-colors duration-300 nav-link">About</a>
-                <a href="#skills" class="text-gray-400 hover:text-white transition-colors duration-300 nav-link">Skills</a>
-                <a href="#projects" class="text-gray-400 hover:text-white transition-colors duration-300 nav-link">Projects</a>
-                <a href="#contact" class="text-gray-400 hover:text-white transition-colors duration-300 nav-link">Contact</a>
-            </div>
-            <!-- Mobile Menu Button -->
-            <button id="menu-button" class="md:hidden text-gray-400 focus:outline-none rounded-full p-2">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-            </button>
-        </nav>
-    </header>
-
-    <!-- Mobile Menu (Hidden by default) -->
-    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-screen bg-gray-900/90 z-30 flex flex-col items-center justify-center space-y-6 transform -translate-x-full transition-transform duration-300 ease-in-out md:hidden backdrop-blur-lg">
-        <button id="close-menu" class="absolute top-6 right-6 text-gray-400 focus:outline-none rounded-full p-2">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+  <!-- Header -->
+  <header id="site-header" class="fixed top-0 inset-x-0 z-40 backdrop-blur supports-[backdrop-filter]:bg-slate-900/60 bg-slate-900/80 border-b border-white/10">
+    <nav class="mx-auto max-w-6xl px-4">
+      <div class="flex items-center justify-between h-16">
+        <a href="https://kartheekreddy.com/" class="font-extrabold tracking-tight text-white text-lg md:text-xl">Kartheek<span class="text-cyan-400">.sec</span></a>
+        <button id="menuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-white/5 focus-ring" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" class="opacity-80"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
-        <a href="#about" class="text-3xl text-gray-200 hover:text-white transition-colors duration-300" onclick="closeMenu()">About</a>
-        <a href="#skills" class="text-3xl text-gray-200 hover:text-white transition-colors duration-300" onclick="closeMenu()">Skills</a>
-        <a href="#projects" class="text-3xl text-gray-200 hover:text-white transition-colors duration-300" onclick="closeMenu()">Projects</a>
-        <a href="#contact" class="text-3xl text-gray-200 hover:text-white transition-colors duration-300" onclick="closeMenu()">Contact</a>
+        <ul class="hidden md:flex items-center gap-6 text-slate-300">
+          <li><a class="hover:text-white/90 focus-ring" href="#about">About</a></li>
+          <li><a class="hover:text-white/90 focus-ring" href="#skills">Skills</a></li>
+          <li><a class="hover:text-white/90 focus-ring" href="#experience">Experience</a></li>
+          <li><a class="hover:text-white/90 focus-ring" href="#projects">Projects</a></li>
+          <li><a class="hover:text-white/90 focus-ring" href="#achievements">Achievements</a></li>
+          <li><a class="hover:text-white/90 focus-ring" href="#blog">Blog</a></li>
+          <li><a class="hover:text-white/90 focus-ring" href="#contact">Contact</a></li>
+          <li>
+            <a href="https://kartheekreddy.com/Nallamilli%20Satya%20Sai%20Kartheek%20Reddy.pdf" class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg border border-cyan-400/40 bg-cyan-400/10 hover:bg-cyan-400/20 text-cyan-300 focus-ring" download>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+              CV
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Mobile nav -->
+    <div id="mobileNav" class="md:hidden hidden border-t border-white/10 bg-slate-900/90">
+      <ul class="max-w-6xl mx-auto px-4 py-4 space-y-2">
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="#about">About</a></li>
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="#skills">Skills</a></li>
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="#experience">Experience</a></li>
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="#projects">Projects</a></li>
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="#achievements">Achievements</a></li>
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="#blog">Blog</a></li>
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="#contact">Contact</a></li>
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="https://kartheekreddy.com/Nallamilli%20Satya%20Sai%20Kartheek%20Reddy.pdf" download>Download CV</a></li>
+      </ul>
     </div>
+  </header>
 
-    <main class="pt-24">
-        <!-- Hero Section -->
-        <section id="hero" class="hero-bg min-h-screen flex items-center justify-center p-6 text-center">
-            <div class="container mx-auto px-4 py-16 max-w-4xl">
-                <div class="relative w-32 h-32 sm:w-48 sm:h-48 mx-auto mb-8 animate-fade-in">
-                    <!-- Animated Padlock SVG for a polished look -->
-                    <svg class="w-full h-full text-neon-cyan" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="1.5">
-                        <path d="M12 17V11M7 9V7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7V9" stroke="currentColor" stroke-dasharray="0 50" class="animate-draw-path" />
-                        <rect x="3" y="9" width="18" height="13" rx="2" stroke="currentColor" stroke-dasharray="0 50" class="animate-draw-path" style="animation-delay: 0.5s;" />
-                        <circle cx="12" cy="14" r="2" stroke="currentColor" stroke-dasharray="0 50" class="animate-draw-path" style="animation-delay: 1s;" />
-                    </svg>
-                    <style>
-                        @keyframes draw-path {
-                            from { stroke-dashoffset: 50; }
-                            to { stroke-dashoffset: 0; }
-                        }
-                        .animate-draw-path {
-                            animation: draw-path 1.5s ease-in-out forwards;
-                        }
-                    </style>
-                </div>
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white leading-tight animate-fade-in">
-                    Hi, I'm <span class="text-neon-cyan">Nallamilli Satya Sai Kartheek Reddy</span>.
-                </h1>
-                <p class="mt-4 text-lg sm:text-xl lg:text-2xl text-gray-400 max-w-2xl mx-auto animate-fade-in">
-                    An aspiring cybersecurity professional.
-                </p>
+  <main id="main" class="pt-20">
+    <!-- Hero -->
+    <section class="hero-gradient relative overflow-hidden">
+      <div class="mx-auto max-w-6xl px-6 py-20 md:py-28 text-center">
+        <div class="w-28 h-28 md:w-40 md:h-40 mx-auto mb-8 text-cyan-400">
+          <!-- lock icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-full h-full opacity-90">
+            <path d="M7 10V7a5 5 0 0 1 10 0v3" stroke-width="1.6"/>
+            <rect x="4" y="10" width="16" height="11" rx="2" stroke-width="1.6"/>
+            <circle cx="12" cy="15" r="2" stroke-width="1.6"/>
+          </svg>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">Hi, I'm <span class="text-cyan-400">Nallamilli Satya Sai Kartheek Reddy</span></h1>
+        <p class="mt-4 text-lg md:text-xl text-slate-300 max-w-2xl mx-auto">MSc Advanced Cyber Security student at Cardiff Met. I explore <span class="text-cyan-300/90">crypto + stego</span>, malware analysis, and security tooling. Open to internships, part‑time roles, and collabs.</p>
+        <div class="mt-8 flex items-center justify-center gap-3">
+          <a href="#projects" class="px-5 py-3 rounded-xl bg-cyan-500/20 border border-cyan-400/40 text-cyan-200 hover:bg-cyan-500/30 focus-ring">See projects</a>
+          <a href="https://www.linkedin.com/in/kartheek-nallamilli/" target="_blank" class="px-5 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 focus-ring">Connect on LinkedIn</a>
+        </div>
+      </div>
+      <div class="absolute inset-0 -z-10 grid-dots opacity-20"></div>
+    </section>
+
+    <!-- About -->
+    <section id="about" class="px-6 py-16 md:py-20">
+      <div class="mx-auto max-w-6xl grid md:grid-cols-5 gap-8 items-center">
+        <div class="md:col-span-3">
+          <h2 class="text-3xl md:text-4xl font-bold mb-4">About me</h2>
+          <p class="text-slate-300 leading-relaxed">I'm a cybersecurity graduate student focused on penetration testing, DFIR, and secure systems. My background spans software QA (mobile game testing), curriculum & game design with Unity C#, and hands‑on security labs. I love building practical tools that make security tasks faster and clearer.</p>
+          <div class="mt-6 flex flex-wrap gap-2">
+            <span class="px-3 py-1 rounded-lg bg-cyan-400/10 border border-cyan-400/30 text-cyan-200 text-sm">Cardiff Metropolitan University</span>
+            <span class="px-3 py-1 rounded-lg bg-fuchsia-400/10 border border-fuchsia-400/30 text-fuchsia-200 text-sm">Open to work</span>
+            <span class="px-3 py-1 rounded-lg bg-emerald-400/10 border border-emerald-400/30 text-emerald-200 text-sm">Right to work (UK)</span>
+          </div>
+        </div>
+        <div class="md:col-span-2">
+          <div class="card rounded-2xl p-5">
+            <h3 class="font-semibold mb-3 flex items-center gap-2">At a glance <span class="text-xs px-2 py-0.5 rounded-full bg-white/5 border border-white/10">CV</span></h3>
+            <ul class="space-y-2 text-sm text-slate-300/90">
+              <li>• <strong>MSc Advanced Cyber Security</strong> — Cardiff Met (2024–2025)</li>
+              <li>• <strong>BTech CSE</strong> — LPU, Punjab (2020–2024)</li>
+              <li>• <strong>QA Tester</strong> — BitLife @ Candywriter (2023)</li>
+              <li>• <strong>Curriculum & Game Designer</strong> — Team Everest (2020–2023)</li>
+              <li>• Certifications — IBM Cloud Essentials (edX, 2023); Intro to Cybersecurity (Coursera & IBM, 2023)</li>
+            </ul>
+            <a href="https://kartheekreddy.com/Nallamilli%20Satya%20Sai%20Kartheek%20Reddy.pdf" class="mt-4 inline-flex items-center gap-2 text-cyan-300 hover:underline" download>Download full CV →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Focus areas -->
+    <section id="focus" class="px-6 py-12 md:py-16 bg-slate-900/40 border-y border-white/5">
+      <div class="mx-auto max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">Focus areas</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="card rounded-2xl p-6">
+            <h3 class="font-semibold mb-2">Offensive Security</h3>
+            <p class="text-sm text-slate-300">Web app recon, exploitation, and reporting; Metasploit, Burp basics; TryHackMe labs.</p>
+          </div>
+          <div class="card rounded-2xl p-6">
+            <h3 class="font-semibold mb-2">DFIR</h3>
+            <p class="text-sm text-slate-300">Packet & memory analysis (Wireshark/Volatility), YARA triage, evidence handling & timelines.</p>
+          </div>
+          <div class="card rounded-2xl p-6">
+            <h3 class="font-semibold mb-2">Crypto & Stego</h3>
+            <p class="text-sm text-slate-300">Hashing, AES/RSA practice, LSB steganography, browser‑based security tooling.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills" class="px-6 py-16 md:py-20">
+      <div class="mx-auto max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8">Skills</h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="card rounded-2xl p-6">
+            <h3 class="font-semibold mb-3">Programming</h3>
+            <ul class="grid grid-cols-2 gap-2 text-sm">
+              <li class="px-3 py-1 rounded-lg bg-white/5">C/C++ <span class="opacity-60">(Advanced)</span></li>
+              <li class="px-3 py-1 rounded-lg bg-white/5">Dart <span class="opacity-60">(Advanced)</span></li>
+              <li class="px-3 py-1 rounded-lg bg-white/5">C# <span class="opacity-60">(Advanced)</span></li>
+              <li class="px-3 py-1 rounded-lg bg-white/5">Python <span class="opacity-60">(Intermediate)</span></li>
+              <li class="px-3 py-1 rounded-lg bg-white/5">Java <span class="opacity-60">(Novice)</span></li>
+            </ul>
+          </div>
+          <div class="card rounded-2xl p-6">
+            <h3 class="font-semibold mb-3">Cybersecurity & Tools</h3>
+            <p class="text-sm text-slate-300 mb-2">Wireshark · Metasploit · Volatility · Ghidra · YARA</p>
+            <p class="text-sm text-slate-400">Pen testing · DFIR · Risk analysis · Threat modeling · Ethical judgement</p>
+          </div>
+          <div class="card rounded-2xl p-6">
+            <h3 class="font-semibold mb-3">Core</h3>
+            <p class="text-sm text-slate-300">Problem‑solving · Critical thinking · Team collaboration · Time management · Leadership · Project management</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience" class="px-6 py-16 md:py-20">
+      <div class="mx-auto max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8">Experience</h2>
+        <ol class="relative border-s border-white/10">
+          <li class="ms-6 pb-10">
+            <span class="absolute -start-3 top-1.5 h-6 w-6 rounded-full bg-cyan-500/20 border border-cyan-400/30"></span>
+            <h3 class="font-semibold">Software Tester (Freelance) — Candywriter LLC</h3>
+            <p class="text-sm text-slate-400">Sep 2023 – Dec 2023</p>
+            <ul class="mt-2 text-slate-300 text-sm list-disc ps-5">
+              <li>Tested BitLife gameplay; identified & drove fixes for critical issues across releases.</li>
+              <li>Partnered with dev/design to streamline debugging & QA process.</li>
+            </ul>
+          </li>
+          <li class="ms-6 pb-10">
+            <span class="absolute -start-3 top-1.5 h-6 w-6 rounded-full bg-fuchsia-500/20 border border-fuchsia-400/30"></span>
+            <h3 class="font-semibold">Curriculum Planner & Game Designer — Team Everest</h3>
+            <p class="text-sm text-slate-400">Sep 2020 – Nov 2023</p>
+            <ul class="mt-2 text-slate-300 text-sm list-disc ps-5">
+              <li>Designed story structures and educational puzzles for ages 9–12.</li>
+              <li>Built simple learning games with Unity C#.</li>
+            </ul>
+          </li>
+          <li class="ms-6">
+            <span class="absolute -start-3 top-1.5 h-6 w-6 rounded-full bg-emerald-500/20 border border-emerald-400/30"></span>
+            <h3 class="font-semibold">Kitchen Helper (Part‑time) — Lazeez Foods</h3>
+            <p class="text-sm text-slate-400">Maintained organisation & hygiene; supported smooth back‑of‑house operations.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Education & Certifications -->
+    <section id="education" class="px-6 py-16 md:py-20 bg-slate-900/40 border-y border-white/5">
+      <div class="mx-auto max-w-6xl grid md:grid-cols-2 gap-6">
+        <div class="card rounded-2xl p-6">
+          <h2 class="text-2xl font-bold mb-3">Education</h2>
+          <div class="mb-4">
+            <h3 class="font-semibold">MSc Advanced Cyber Security — Cardiff Metropolitan University</h3>
+            <p class="text-sm text-slate-400">Sep 2024 – 2025</p>
+            <p class="text-sm text-slate-300">Penetration testing · Forensic investigations · Encryption for secure communication · GDPR / ISO 27701 policy design</p>
+          </div>
+          <div>
+            <h3 class="font-semibold">BTech Computer Science & Engineering — Lovely Professional University</h3>
+            <p class="text-sm text-slate-400">Sep 2020 – May 2024</p>
+            <p class="text-sm text-slate-300">Cyber threat mitigation · Secure data transmission · Incident response · Decentralised systems & smart contracts</p>
+          </div>
+        </div>
+        <div class="card rounded-2xl p-6">
+          <h2 class="text-2xl font-bold mb-3">Certifications</h2>
+          <ul class="space-y-2 text-sm">
+            <li>IBM Cloud Essentials (CC0103EN) — edX <span class="text-slate-400">(Jun 2023)</span></li>
+            <li>Introduction to Cybersecurity Essentials — Coursera & IBM <span class="text-slate-400">(Mar 2023)</span></li>
+          </ul>
+          <p class="mt-3 text-xs text-slate-400">*Add links to certificates if available.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="px-6 py-16 md:py-20">
+      <div class="mx-auto max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8">Projects</h2>
+        <!-- Filters -->
+        <div class="flex flex-wrap gap-2 mb-6">
+          <button class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-sm" data-filter="all">All</button>
+          <button class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-sm" data-filter="crypto">Crypto/Stego</button>
+          <button class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-sm" data-filter="dfir">Malware/DFIR</button>
+          <button class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-sm" data-filter="web">Web tools</button>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          <article class="card rounded-2xl p-6 flex flex-col" data-tags="crypto web">
+            <header class="mb-2">
+              <h3 class="font-semibold text-lg">Stegocrypt</h3>
+              <p class="text-sm text-slate-400">Python · LSB · AES · RSA (WIP)</p>
+            </header>
+            <p class="text-sm text-slate-300">Tool integrating encryption and steganography for multi‑type payloads. Roadmap includes RSA support.</p>
+          </article>
+          <article class="card rounded-2xl p-6 flex flex-col" data-tags="dfir">
+            <header class="mb-2">
+              <h3 class="font-semibold text-lg">Is My File Safe?</h3>
+              <p class="text-sm text-slate-400">Python · Turtle · VirusTotal API</p>
+            </header>
+            <p class="text-sm text-slate-300">Scans files against known threat signatures and surfaces real‑time safety insights via a simple UI.</p>
+            <a class="mt-3 text-cyan-300 hover:underline" target="_blank" href="https://github.com/KartheekReddy100/Is-My-File-Safe">View on GitHub →</a>
+          </article>
+          <article class="card rounded-2xl p-6 flex flex-col" data-tags="web crypto">
+            <header class="mb-2">
+              <h3 class="font-semibold text-lg">Hashkitten — Advanced Hash Toolkit</h3>
+              <p class="text-sm text-slate-400">HTML5 · Tailwind · JS · Web Crypto</p>
+            </header>
+            <p class="text-sm text-slate-300">Browser‑only hashing/encoding utility. No uploads; privacy‑preserving.</p>
+            <a class="mt-3 text-cyan-300 hover:underline" target="_blank" href="https://github.com/KartheekReddy100/Hashkitten">View on GitHub →</a>
+          </article>
+        </div>
+        <p class="text-sm text-slate-400 mt-4">More on <a class="text-cyan-300 hover:underline" target="_blank" href="https://github.com/KartheekReddy100">github.com/KartheekReddy100</a></p>
+
+        <div class="mt-10 grid md:grid-cols-2 gap-6">
+          <article class="card rounded-2xl p-6">
+            <h3 class="font-semibold">Publication</h3>
+            <p class="text-sm text-slate-300">“Are Electric Vehicles Really the Future?” — lifecycle & sustainability analysis of EVs; impact of battery tech and renewables.</p>
+          </article>
+          <article class="card rounded-2xl p-6">
+            <h3 class="font-semibold">Coursework highlight</h3>
+            <p class="text-sm text-slate-300">Policy & framework design mapped to GDPR / ISO 27701; encryption schemes for secure comms; DFIR casework.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Achievements / Badges -->
+    <section id="achievements" class="px-6 py-16 md:py-20 bg-slate-900/40 border-y border-white/5">
+      <div class="mx-auto max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold mb-8">Achievements</h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="card rounded-2xl p-6">
+            <h3 class="font-semibold">TryHackMe</h3>
+            <ul class="list-disc ps-5 text-sm text-slate-300">
+              <li>100+ rooms completed; multiple King of the Hill wins.</li>
+              <li>Global rank ≈ 30,000.</li>
+            </ul>
+            <a class="mt-3 inline-flex items-center gap-1 text-cyan-300 hover:underline" target="_blank" href="https://tryhackme.com/r/p/azhday">Profile →</a>
+          </div>
+          <div class="card rounded-2xl p-6">
+            <h3 class="font-semibold">Community & presence</h3>
+            <div class="flex flex-wrap gap-2 text-sm">
+              <a class="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10" target="_blank" href="https://www.linkedin.com/in/kartheek-nallamilli/">LinkedIn</a>
+              <a class="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10" target="_blank" href="https://github.com/KartheekReddy100">GitHub</a>
+              <a class="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10" target="_blank" href="https://x.com/_AZHDAY">X</a>
+              <a class="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10" target="_blank" href="https://www.instagram.com/kartheekreddy_nallamilli/">Instagram</a>
             </div>
-        </section>
+          </div>
+        </div>
+      </div>
+    </section>
 
-        <!-- About Section -->
-        <section id="about" class="section-bg py-20 px-6">
-            <div class="container mx-auto max-w-4xl">
-                <h2 class="text-4xl font-bold text-center mb-12 text-white fade-slide-up">About Me</h2>
-                <div class="bg-gray-800 card p-8 sm:p-12 leading-relaxed fade-slide-up" data-delay="0.2s">
-                    <p class="text-lg text-gray-300 mb-4">
-                        I am currently pursuing my <span class="text-neon-cyan">MSc in Advanced Cyber Security at Cardiff Metropolitan University</span>, building on my background in Computer Science and Engineering from LPU, Punjab. My academic journey has provided me with hands-on experience in penetration testing, forensic investigations, and securing digital communication.
-                    </p>
-                    <p class="text-lg text-gray-300">
-                        My passion lies in detecting and mitigating cyber threats. I'm also a freelance Software Tester and an experienced Game Designer, roles that have sharpened my problem-solving skills and adaptability. I'm always looking for new challenges to grow and contribute to the field of cybersecurity.
-                    </p>
-                </div>
-            </div>
-        </section>
+    <!-- Blog (placeholder) -->
+    <section id="blog" class="px-6 py-16 md:py-20">
+      <div class="mx-auto max-w-6xl">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Blog</h2>
+        <p class="text-slate-300">Coming soon — short write‑ups on labs, cheatsheets, and project notes.</p>
+      </div>
+    </section>
 
-        <!-- Skills Section -->
-        <section id="skills" class="py-20 px-6">
-            <div class="container mx-auto max-w-4xl">
-                <h2 class="text-4xl font-bold text-center mb-12 text-white fade-slide-up">My Skills</h2>
-                <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                    <!-- Programming Languages -->
-                    <div class="bg-gray-800 card p-6 fade-slide-up" data-delay="0.1s">
-                        <svg class="w-12 h-12 mx-auto text-neon-cyan mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
-                        <h3 class="text-lg font-semibold text-white">Programming</h3>
-                        <p class="text-sm text-gray-400">C/C++, Dart, C#, Python, Java</p>
-                    </div>
-                    <!-- Cybersecurity Tools -->
-                    <div class="bg-gray-800 card p-6 fade-slide-up" data-delay="0.2s">
-                        <svg class="w-12 h-12 mx-auto text-neon-cyan mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                        <h3 class="text-lg font-semibold text-white">Cybersecurity Tools</h3>
-                        <p class="text-sm text-gray-400">Wireshark, Metasploit, Volatility, Ghidra, YARA</p>
-                    </div>
-                    <!-- Core Skills -->
-                    <div class="bg-gray-800 card p-6 fade-slide-up" data-delay="0.3s">
-                        <svg class="w-12 h-12 mx-auto text-neon-cyan mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.484 9.498 5.424 8 5.5v13m4-13a6.002 6.002 0 00-4 5.612v6.888a6.002 6.002 0 004 5.612m0-13C13.168 5.484 14.502 5.424 16 5.5v13m-4-13a6.002 6.002 0 014 5.612v6.888a6.002 6.002 0 01-4 5.612"></path></svg>
-                        <h3 class="text-lg font-semibold text-white">Core Skills</h3>
-                        <p class="text-sm text-gray-400">Problem-Solving, Critical Thinking, Team Collaboration</p>
-                    </div>
-                    <!-- Game Design -->
-                    <div class="bg-gray-800 card p-6 fade-slide-up" data-delay="0.4s">
-                        <svg class="w-12 h-12 mx-auto text-neon-cyan mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.186 0-6.233-.62-9-1.745M16 18.5a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zm0 0v-4.5"></path></svg>
-                        <h3 class="text-lg font-semibold text-white">Game Design</h3>
-                        <p class="text-sm text-gray-400">Unity C#, Puzzles, Story Structures</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <!-- Projects Section -->
-        <section id="projects" class="py-20 px-6">
-            <div class="container mx-auto max-w-4xl">
-                <h2 class="text-4xl font-bold text-center mb-12 text-white fade-slide-up">My Projects</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <!-- Project Card 1: Stegocrypt -->
-                    <div class="bg-gray-800 card p-8 fade-slide-up" data-delay="0.1s">
-                        <h3 class="text-2xl font-semibold text-white mb-2">Stegocrypt</h3>
-                        <p class="text-lg text-gray-400 mb-4">Python, LSB, AES, RSA</p>
-                        <p class="text-gray-300 leading-relaxed">
-                            A versatile tool that integrates encryption and steganography to secure sensitive data. It enables encryption and decryption for various file types, ensuring data confidentiality and integrity.
-                        </p>
-                    </div>
-                    <!-- Project Card 2: Is My File Safe? -->
-                    <div class="bg-gray-800 card p-8 fade-slide-up" data-delay="0.2s">
-                        <h3 class="text-2xl font-semibold text-white mb-2">Is My File Safe?</h3>
-                        <p class="text-lg text-gray-400 mb-4">Python, Turtle, VirusTotal API</p>
-                        <p class="text-gray-300 leading-relaxed">
-                            An application designed to assess the safety of files by comparing them against a database of known threat signatures, providing real-time insights for users.
-                        </p>
-                         <a href="https://github.com/KartheekReddy100/Is-My-File-Safe" target="_blank" class="inline-block mt-4 text-neon-cyan hover:underline transition-colors duration-300">
-                             View on GitHub &rarr;
-                        </a>
-                    </div>
-                     <!-- New Project Card: Hashkitten -->
-                    <div class="bg-gray-800 card p-8 fade-slide-up" data-delay="0.3s">
-                        <h3 class="text-2xl font-semibold text-white mb-2">Hashkitten - Advanced Hash Toolkit</h3>
-                        <p class="text-lg text-gray-400 mb-4">HTML5, Tailwind, JS, Web Crypto API</p>
-                        <p class="text-gray-300 leading-relaxed">
-                            A versatile, all-in-one crypto utility for hashing, encoding, and more. It runs entirely in your browser, ensuring data privacy by never uploading your files or text.
-                        </p>
-                        <a href="https://github.com/KartheekReddy100/Hashkitten" target="_blank" class="inline-block mt-4 text-neon-cyan hover:underline transition-colors duration-300">
-                             View on GitHub &rarr;
-                        </a>
-                    </div>
-                    <div class="col-span-1 md:col-span-2 text-center mt-4 card fade-slide-up" data-delay="0.4s">
-                        <p class="text-gray-400">And many more projects can be found at my <a href="https://github.com/KartheekReddy100" target="_blank" class="text-neon-cyan hover:underline">GitHub</a>.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+    <!-- Contact -->
+    <section id="contact" class="px-6 py-16 md:py-20">
+      <div class="mx-auto max-w-3xl text-center">
+        <h2 class="text-3xl md:text-4xl font-bold mb-4">Get in touch</h2>
+        <p class="text-slate-300 max-w-2xl mx-auto">Open to internships, part‑time roles, and research collaborations. The fastest way to reach me is email.</p>
+        <div class="mt-6 flex items-center justify-center gap-3 flex-wrap">
+          <a href="mailto:kartheekreddy@outlook.in" class="px-5 py-3 rounded-xl bg-cyan-500/20 border border-cyan-400/40 text-cyan-200 hover:bg-cyan-500/30 focus-ring">Email</a>
+          <button id="copyEmail" class="px-5 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 focus-ring">Copy email</button>
+          <a href="https://www.linkedin.com/in/kartheek-nallamilli/" target="_blank" class="px-5 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 focus-ring">LinkedIn</a>
+          <a href="https://wa.me/qr/2AOY2XFCWBCFB1" target="_blank" class="px-5 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 focus-ring">WhatsApp</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-        <!-- Contact Section -->
-        <section id="contact" class="section-bg py-20 px-6">
-            <div class="container mx-auto max-w-4xl text-center">
-                <h2 class="text-4xl font-bold text-center mb-12 text-white fade-slide-up">Get in Touch</h2>
-                <div class="flex flex-col items-center">
-                    <p class="text-lg text-gray-300 mb-6 max-w-2xl fade-slide-up" data-delay="0.1s">
-                        I'm always open to new opportunities and collaborations. Feel free to connect with me on social media or reach out directly.
-                    </p>
-                    <div class="flex space-x-6 text-gray-400 text-3xl">
-                        <!-- LinkedIn Icon -->
-                        <a href="https://www.linkedin.com/in/kartheek-nallamilli" target="_blank" aria-label="LinkedIn" class="hover:text-white transition-colors duration-300 social-link fade-slide-up" data-delay="0.2s">
-                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.381 1.11-2.5 2.48-2.5s2.48 1.119 2.48 2.5zM.02 24h4.96v-18h-4.96v18zM18.52 14.5c0-2.492-2.12-4.14-4.85-4.14-2.28 0-3.4 1.258-3.9 2.05v-1.76h-4.96c0 .647-.04 1.2-.08 1.68h-.02v13.67h4.96v-8.47c0-.5.06-1.04.28-1.33.22-.3.6-.5.98-.5s.74.2.98.5c.22.29.28.83.28 1.33v8.47h4.96z" />
-                            </svg>
-                        </a>
-                        <!-- GitHub Icon -->
-                        <a href="https://github.com/KartheekReddy100" target="_blank" aria-label="GitHub" class="hover:text-white transition-colors duration-300 social-link fade-slide-up" data-delay="0.3s">
-                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 .297c-6.627 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61-.546-1.387-1.334-1.756-1.334-1.756-1.09-.745.083-.73.083-.73 1.205.084 1.838 1.238 1.838 1.238 1.07 1.833 2.809 1.305 3.492.998.108-.776.419-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.124-.3-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.4 3.003-.404 1.02.004 2.046.138 3.003.404 2.292-1.552 3.3-1.23 3.3-1.23.653 1.652.242 2.876.118 3.176.77.84 1.235 1.91 1.235 3.22 0 4.61-2.801 5.626-5.475 5.922.42.36.81 1.096.81 2.21 0 1.606-.015 2.897-.015 3.287 0 .32.218.694.825.576 4.766-1.587 8.2-6.082 8.2-11.385 0-6.627-5.373-12-12-12z" />
-                            </svg>
-                        </a>
-                        <!-- Email Link -->
-                        <a href="mailto:kartheekreddy@outlook.in" target="_blank" aria-label="Email" class="hover:text-white transition-colors duration-300 social-link fade-slide-up" data-delay="0.4s">
-                             <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 0 24" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path></svg>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
+  <!-- Floating CTA -->
+  <a id="floatCta" href="#contact" class="fixed bottom-5 right-5 z-40 px-4 py-3 rounded-xl bg-cyan-500/20 border border-cyan-400/40 text-cyan-100 backdrop-blur hover:bg-cyan-500/30">Hire me</a>
 
-    <!-- Footer -->
-    <footer class="text-center py-6 px-4 text-gray-400 text-sm border-t border-gray-700/50">
-        <p>&copy; 2024 Nallamilli Satya Sai Kartheek Reddy. All rights reserved.</p>
-    </footer>
+  <footer class="border-t border-white/10 text-center text-sm text-slate-400 py-6">
+    <p>© <span id="year"></span> N. S. S. Kartheek Reddy. All rights reserved.</p>
+  </footer>
 
-    <!-- JavaScript for Mobile Menu & Scroll Animations -->
-    <script>
-        const menuButton = document.getElementById('menu-button');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const closeButton = document.getElementById('close-menu');
-        const header = document.querySelector('header');
+  <script>
+    // header hide on scroll up/down
+    const header = document.getElementById('site-header');
+    let lastY = window.scrollY;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y > 100 && y > lastY) header.style.transform = 'translateY(-100%)';
+      else header.style.transform = '';
+      lastY = y;
+    });
 
-        // Function to toggle the mobile menu
-        function toggleMenu() {
-            mobileMenu.classList.toggle('-translate-x-full');
-        }
+    // mobile nav
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    menuBtn?.addEventListener('click', () => {
+      const open = mobileNav.classList.contains('hidden');
+      mobileNav.classList.toggle('hidden');
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
 
-        // Function to close the mobile menu (for use with nav links)
-        function closeMenu() {
-            mobileMenu.classList.add('-translate-x-full');
-        }
+    // intersection fade-ups (honor reduced motion)
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      const obs = new IntersectionObserver((entries)=>{
+        for (const e of entries) if (e.isIntersecting){e.target.classList.add('is-visible');obs.unobserve(e.target);} 
+      },{threshold:0.12});
+      document.querySelectorAll('.card, .fade-up').forEach(el=>obs.observe(el));
+    }
 
-        // Event listeners for the buttons
-        menuButton.addEventListener('click', toggleMenu);
-        closeButton.addEventListener('click', closeMenu);
+    // dynamic footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-        // Hide header on scroll down, show on scroll up
-        let lastScrollY = window.scrollY;
-        window.addEventListener('scroll', () => {
-            if (lastScrollY < window.scrollY && window.scrollY > 100) {
-                // Scrolling down, hide header
-                header.classList.add('-translate-y-full');
-            } else {
-                // Scrolling up, show header
-                header.classList.remove('-translate-y-full');
-            }
-            lastScrollY = window.scrollY;
-        });
+    // projects filter
+    const filterBtns = document.querySelectorAll('[data-filter]');
+    const cards = document.querySelectorAll('#projects [data-tags]');
+    filterBtns.forEach(btn=>btn.addEventListener('click',()=>{
+      const f = btn.getAttribute('data-filter');
+      filterBtns.forEach(b=>b.classList.remove('ring-2','ring-cyan-400/40','bg-white/10'));
+      btn.classList.add('ring-2','ring-cyan-400/40','bg-white/10');
+      cards.forEach(c=>{
+        const tags = c.getAttribute('data-tags')||'';
+        c.style.display = (f==='all' || tags.includes(f)) ? '' : 'none';
+      });
+    }));
 
-        // Scroll-based fade-in animation with staggered delays
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const delay = entry.target.getAttribute('data-delay');
-                    if (delay) {
-                        entry.target.style.transitionDelay = delay;
-                    }
-                    entry.target.classList.add('is-visible');
-                    observer.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.fade-slide-up').forEach(element => {
-            observer.observe(element);
-        });
-
-    </script>
-
+    // copy email
+    document.getElementById('copyEmail')?.addEventListener('click', async ()=>{
+      try{ await navigator.clipboard.writeText('kartheekreddy@outlook.in');
+        const btn = document.getElementById('copyEmail');
+        const txt = btn.textContent; btn.textContent = 'Copied!';
+        setTimeout(()=>btn.textContent = txt, 1400);
+      }catch(e){ alert('Copy failed. Email: kartheekreddy@outlook.in'); }
+    });
+  </script>
 </body>
 </html>
