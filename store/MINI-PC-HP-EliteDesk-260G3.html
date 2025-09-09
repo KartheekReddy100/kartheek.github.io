@@ -67,10 +67,24 @@
       box-shadow: 0 8px 32px 0 #10b98155;
       border: none;
       transition: background 0.2s, box-shadow 0.2s;
+      padding: 1.1rem 0;
+      min-width: 180px;
+      max-width: 320px;
+      width: 100%;
+      text-align: center;
+      display: inline-block;
     }
     .store-btn:hover, .store-btn-main:hover {
       background: linear-gradient(90deg, var(--primary), var(--emerald, #10b981));
       box-shadow: 0 8px 32px 0 #0ea5e9cc;
+    }
+    @media (max-width: 768px) {
+      .store-btn, .store-btn-main {
+        max-width: 100%;
+        min-width: 0;
+        font-size: 1.08rem;
+        padding: 1rem 0;
+      }
     }
   </style>
 </head>
@@ -132,7 +146,7 @@
             <div class="mb-8">
               <span class="text-2xl font-bold text-cyan-400">£80</span>
             </div>
-            <a href="mailto:kartheekreddysec@gmail.com?subject=Enquiry%20for%20MINI%20PC%20HP%20EliteDesk%20260G3" class="block w-full text-center py-4 rounded-2xl store-btn-main mt-2">Enquire</a>
+            <a href="mailto:kartheekreddysec@gmail.com?subject=Enquiry%20for%20MINI%20PC%20HP%20EliteDesk%20260G3" class="store-btn-main w-full max-w-xs text-center mt-2">Enquire</a>
           </div>
         </div>
       </div>
