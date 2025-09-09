@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Store — Kartheek Reddy</title>
+  <meta name="description" content="Shop for custom PC builds." />
+  <link rel="canonical" href="https://kartheekreddy.com/store.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="theme-color" content="#0ea5e9" />
+  <style>
+    :root{
+      --primary: #00d2ff;
+      --accent: #a855f7;
+      --bg-dark: #0b1220;
+      --bg-mid: #131c2b;
+      --card: #1b2434;
+      --ring: rgba(0,210,255,.25);
+      --heading-font: 'Inter', system-ui, sans-serif;
+      --body-font: 'Inter', system-ui, sans-serif;
+    }
+    html{scroll-behavior:smooth}
+    body{
+      font-family: var(--body-font);
+      font-size: 1.08rem;
+      line-height: 1.7;
+      letter-spacing: 0.01em;
+      color: #e2e8f0;
+      background: var(--bg-dark);
+    }
+    h1, .text-4xl, .text-6xl {
+      font-family: var(--heading-font);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      line-height: 1.13;
+      color: #fff;
+    }
+    h2, .section-heading {
+      font-family: var(--heading-font);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.18;
+      color: #e0e7ef;
+    }
+    .card-gradient {
+      background: linear-gradient(120deg, var(--primary), var(--accent), var(--emerald, #10b981));
+      padding: 2px;
+      border-radius: 1.6rem;
+      display: block;
+    }
+    .card-gradient .card {
+      background: rgba(30,41,59,0.82);
+      border-radius: 1.4rem !important;
+      box-shadow: 0 8px 32px 0 rgba(14,165,233,0.13), 0 2px 8px 0 rgba(168,85,247,0.09);
+    }
+    .focus-ring{outline:2px solid transparent;outline-offset:2px;transition:box-shadow .2s}
+    .focus-ring:focus{box-shadow:0 0 0 2px var(--ring)}
+  </style>
+</head>
+<body>
+  <header id="site-header" class="fixed top-0 inset-x-0 z-50 backdrop-blur border-b border-white/10 bg-slate-900/80 transition-transform">
+    <nav class="mx-auto max-w-6xl px-4">
+      <div class="flex items-center justify-between h-16">
+        <a href="index.html" class="font-extrabold tracking-tight text-white text-lg md:text-xl">Kartheek<span class="text-cyan-400">.sec</span></a>
+        <button id="menuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-white/5 focus-ring" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" class="opacity-80"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <ul class="hidden md:flex items-center gap-6 text-slate-300">
+          <li><a class="hover:text-white/90 focus-ring" href="index.html#about">About</a></li>
+          <li><a class="hover:text-white/90 focus-ring" href="index.html#projects">Projects</a></li>
+          <li><a class="hover:text-white/90 focus-ring" href="store.html">Shop</a></li>
+          <li><a class="hover:text-white/90 focus-ring" href="index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div id="mobileNav" class="md:hidden hidden border-t border-white/10 bg-slate-900/90">
+      <ul class="max-w-6xl mx-auto px-4 py-4 space-y-2">
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="index.html#about">About</a></li>
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="index.html#projects">Projects</a></li>
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="store.html">Shop</a></li>
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main" class="pt-20">
+    <section class="px-6 py-16 md:py-20">
+      <div class="mx-auto max-w-6xl">
+        <h1 class="section-heading text-3xl md:text-4xl font-bold mb-8">PC Store</h1>
+        <div class="grid gap-8 md:grid-cols-3">
+          <div class="card-gradient">
+            <div class="card p-6 rounded-xl">
+              <img src="https://source.unsplash.com/collection/190727/400x300" alt="Gaming PC" class="rounded mb-4">
+              <h3 class="font-semibold text-xl mb-2">Gaming Beast 5000</h3>
+              <p class="text-slate-300 mb-4">High-end gaming desktop with the latest RTX graphics.</p>
+              <p class="text-slate-400 font-semibold">£1,999</p>
+            </div>
+          </div>
+          <div class="card-gradient">
+            <div class="card p-6 rounded-xl">
+              <img src="https://source.unsplash.com/collection/483251/400x300" alt="Workstation PC" class="rounded mb-4">
+              <h3 class="font-semibold text-xl mb-2">Workstation Pro X</h3>
+              <p class="text-slate-300 mb-4">Designed for heavy multitasking and rendering workloads.</p>
+              <p class="text-slate-400 font-semibold">£2,499</p>
+            </div>
+          </div>
+          <div class="card-gradient">
+            <div class="card p-6 rounded-xl">
+              <img src="https://source.unsplash.com/collection/8351296/400x300" alt="Budget PC" class="rounded mb-4">
+              <h3 class="font-semibold text-xl mb-2">Budget Build 101</h3>
+              <p class="text-slate-300 mb-4">Affordable starter PC for everyday use and light gaming.</p>
+              <p class="text-slate-400 font-semibold">£699</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/10 text-center text-sm text-slate-400 py-6">
+    <p>© <span id="year"></span> N. S. S. Kartheek Reddy. All rights reserved.</p>
+  </footer>
+
+  <script>
+    const header = document.getElementById('site-header');
+    let lastY = window.scrollY;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      if (y > 100 && y > lastY) header.style.transform = 'translateY(-100%)';
+      else header.style.transform = '';
+      lastY = y;
+    });
+
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileNav = document.getElementById('mobileNav');
+    menuBtn?.addEventListener('click', () => {
+      const open = mobileNav.classList.contains('hidden');
+      mobileNav.classList.toggle('hidden');
+      menuBtn.setAttribute('aria-expanded', String(open));
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
