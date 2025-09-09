@@ -28,18 +28,197 @@
       --bg-mid: #131c2b;
       --card: #1b2434;
       --ring: rgba(0,210,255,.25);
+      --heading-font: 'Inter', system-ui, sans-serif;
+      --body-font: 'Inter', system-ui, sans-serif;
     }
     html{scroll-behavior:smooth}
-    body{font-family:'Inter',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,'Apple Color Emoji','Segoe UI Emoji';}
-    .hero-gradient{background:radial-gradient(1200px 600px at 50% -10%,rgba(168,85,247,.25),transparent 60%),radial-gradient(1200px 600px at 10% 10%,rgba(14,165,233,.2),transparent 60%),linear-gradient(180deg,#0b1220,#0b1220)}
-    .grid-dots{background-image: radial-gradient(#243045 1px, transparent 1px);background-size: 22px 22px}
-    .card{background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,0));border:1px solid rgba(255,255,255,.06)}
-    .focus-ring:focus-visible{outline:none;box-shadow:0 0 0 6px var(--ring)}
-    @media (prefers-reduced-motion: no-preference){
-      .fade-up{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
-      .fade-up.is-visible{opacity:1;transform:none}
+    body{
+      font-family: var(--body-font);
+      font-size: 1.08rem;
+      line-height: 1.7;
+      letter-spacing: 0.01em;
+      color: #e2e8f0;
+      background: var(--bg-dark);
     }
+    h1, .text-4xl, .text-6xl {
+      font-family: var(--heading-font);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      line-height: 1.13;
+      color: #fff;
+    }
+    h1 {
+      font-size: 2.7rem;
+    }
+    @media (min-width: 768px) {
+      h1 {
+        font-size: 3.7rem;
+      }
+    }
+    h2, .text-3xl, .text-2xl, .md\:text-4xl {
+      font-family: var(--heading-font);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.18;
+      color: #e0e7ef;
+    }
+    h2 {
+      font-size: 2.1rem;
+    }
+    @media (min-width: 768px) {
+      h2 {
+        font-size: 2.7rem;
+      }
+    }
+    h3, .font-semibold {
+      font-family: var(--heading-font);
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      color: #cbd5e1;
+    }
+    p, ul, li, .text-slate-300, .text-slate-400 {
+      font-size: 1.08rem;
+      line-height: 1.7;
+      letter-spacing: 0.01em;
+    }
+    .section-heading {
+      font-family: var(--heading-font);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-shadow: 0 2px 12px rgba(0,210,255,0.04);
+    }
+    .card ul, .card p {
+      font-size: 1.01rem;
+      line-height: 1.65;
+    }
+    .card h3 {
+      font-size: 1.18rem;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+    }
+    .btn, .btn-outline {
+      font-size: 1.08rem;
+      letter-spacing: 0.01em;
+      font-weight: 600;
+    }
+    .text-sm {
+      font-size: 0.98rem;
+    }
+    .text-xs {
+      font-size: 0.85rem;
+    }
+    /* Gradient border for cards */
+    .card-gradient {
+      background: linear-gradient(120deg, var(--primary), var(--accent), var(--emerald, #10b981));
+      padding: 2px;
+      border-radius: 1.6rem;
+      display: block;
+    }
+    .card-gradient .card {
+      background: rgba(30,41,59,0.82);
+      border-radius: 1.4rem !important;
+      box-shadow: 0 8px 32px 0 rgba(14,165,233,0.13), 0 2px 8px 0 rgba(168,85,247,0.09);
+    }
+    /* Service icon hover animation */
+    .card svg, .service-icon svg {
+      transition: transform 0.3s cubic-bezier(.4,0,.2,1), filter 0.3s cubic-bezier(.4,0,.2,1);
+    }
+    .card:hover svg, .service-icon:hover svg {
+      transform: scale(1.13) rotate(-6deg);
+      filter: drop-shadow(0 2px 12px #0ea5e9cc);
+    }
+    /* Section heading accent bar */
+    .section-heading {
+      position: relative;
+      z-index: 1;
+    }
+    .section-heading::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 4px;
+      border-radius: 2px;
+      margin: 0.7em auto 0 auto;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      opacity: 0.7;
+    }
+    /* Section spacing */
+    section {
+      margin-bottom: 2.5rem;
+    }
+    /* Welcome carousel outlined large text */
+    #welcome-carousel {
+      margin-top: 4.5rem;
+      font-size: 2.5rem;
+      font-weight: 900;
+      letter-spacing: 0.01em;
+      color: var(--primary);
+      /* Remove text-stroke and outline */
+      text-shadow: 0 2px 24px rgba(0,210,255,0.13);
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+      text-transform: uppercase;
+      background: none;
+      padding: 0;
+    }
+    @media (min-width: 768px) {
+      #welcome-carousel {
+        font-size: 4.5rem;
+      }
+    }
+    /* Card hover glow */
+    .card:hover, .card:focus-within {
+      box-shadow: 0 8px 32px 0 #0ea5e9cc, 0 2px 8px 0 #a855f7aa;
+      border-color: var(--primary);
+      background: rgba(30,41,59,0.93);
+      transition: box-shadow 0.3s, border-color 0.3s, background 0.3s;
+    }
+    /* Gradient text for section headings */
+    .section-heading {
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    /* Scroll-to-top button */
+    #scrollTopBtn {
+      display: none;
+      position: fixed;
+      bottom: 2.5rem;
+      right: 2.5rem;
+      z-index: 50;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      color: #fff;
+      border: none;
+      border-radius: 9999px;
+      padding: 0.8rem 1.1rem;
+      font-size: 1.5rem;
+      box-shadow: 0 2px 12px #0ea5e9cc;
+      cursor: pointer;
+      opacity: 0.85;
+      transition: opacity 0.2s;
+    }
+    #scrollTopBtn:hover { opacity: 1; }
+    /* Improved mobile card layout */
+    @media (max-width: 767px) {
+      .card {
+        margin-bottom: 1.5rem;
+        padding: 1.3rem 1rem;
+      }
+      .card h3 {
+        font-size: 1.22rem;
+      }
+      .card a, .card button {
+        min-height: 48px;
+        font-size: 1.08rem;
+      }
+    }
+    /* Section fade/slide-in animation */
+    .fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.7s, transform 0.7s; }
+    .fade-up.is-visible { opacity: 1; transform: none; }
+    /* ...existing code... */
   </style>
+  <link rel="icon" type="image/png" href="/favicon.png" />
   <!-- Structured data (Person) -->
   <script type="application/ld+json">
   {
@@ -104,16 +283,14 @@
   </header>
 
   <main id="main" class="pt-20">
+    <!-- Scroll-to-top button -->
+    <button id="scrollTopBtn" aria-label="Scroll to top">↑</button>
+
     <!-- Hero -->
     <section class="hero-gradient relative overflow-hidden">
       <div class="mx-auto max-w-6xl px-6 py-20 md:py-28 text-center">
-        <div class="w-28 h-28 md:w-40 md:h-40 mx-auto mb-8 text-cyan-400">
-          <!-- lock icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" class="w-full h-full opacity-90">
-            <path d="M7 10V7a5 5 0 0 1 10 0v3" stroke-width="1.6"/>
-            <rect x="4" y="10" width="16" height="11" rx="2" stroke-width="1.6"/>
-            <circle cx="12" cy="15" r="2" stroke-width="1.6"/>
-          </svg>
+        <div id="welcome-carousel" class="mb-4 text-2xl md:text-3xl font-bold text-cyan-300 h-10 flex items-center justify-center transition-opacity duration-700" style="min-height:2.5rem;">
+          Welcome
         </div>
         <h1 class="text-4xl md:text-6xl font-extrabold leading-tight tracking-tight">Hi, I'm <span class="text-cyan-400">Nallamilli Satya Sai Kartheek Reddy</span></h1>
         <p class="mt-4 text-lg md:text-xl text-slate-300 max-w-2xl mx-auto">MSc Advanced Cyber Security student at Cardiff Met. I explore <span class="text-cyan-300/90">crypto + stego</span>, malware analysis, and security tooling. Open to internships, part‑time roles, and collabs.</p>
@@ -126,10 +303,10 @@
     </section>
 
     <!-- About -->
-    <section id="about" class="px-6 py-16 md:py-20">
+    <section id="about" class="px-6 py-16 md:py-20 fade-up">
       <div class="mx-auto max-w-6xl grid md:grid-cols-5 gap-8 items-center">
         <div class="md:col-span-3">
-          <h2 class="text-3xl md:text-4xl font-bold mb-4">About me</h2>
+          <h2 class="section-heading text-3xl md:text-4xl font-bold mb-4">About me</h2>
           <p class="text-slate-300 leading-relaxed">I'm a cybersecurity graduate student focused on penetration testing, DFIR, and secure systems. My background spans software QA (mobile game testing), curriculum & game design with Unity C#, and hands‑on security labs. I love building practical tools that make security tasks faster and clearer.</p>
           <div class="mt-6 flex flex-wrap gap-2">
             <span class="px-3 py-1 rounded-lg bg-cyan-400/10 border border-cyan-400/30 text-cyan-200 text-sm">Cardiff Metropolitan University</span>
@@ -153,10 +330,47 @@
       </div>
     </section>
 
-    <!-- Focus areas -->
-    <section id="focus" class="px-6 py-12 md:py-16 bg-slate-900/40 border-y border-white/5">
+    <!-- Services Section -->
+    <section id="services" class="px-6 py-16 md:py-20 bg-slate-900/40 border-y border-white/5 fade-up">
       <div class="mx-auto max-w-6xl">
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">Focus areas</h2>
+        <h2 class="section-heading text-3xl md:text-4xl font-bold mb-8 text-center">Home IT & Tech Services</h2>
+        <p class="text-center text-slate-300 mb-10">Currently providing services in <span class="font-semibold text-cyan-300">Balloch</span> and <span class="font-semibold text-cyan-300">Culloden</span>. Contact me via <a href="mailto:kartheekreddy@outlook.in" class="text-cyan-300 hover:underline">email</a>.</p>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="card rounded-2xl p-6 flex flex-col items-center text-center">
+            <div class="mb-3 text-cyan-400">
+              <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" stroke-width="1.7"/><rect x="3" y="3" width="13" height="13" rx="2" stroke-width="1.7"/></svg>
+            </div>
+            <h3 class="font-semibold mb-2 text-lg">Home IT Support</h3>
+            <p class="text-slate-300 text-sm mb-2">WiFi troubleshooting, computer repairs, printer setup, device help, and more — at your home.</p>
+            <div class="text-cyan-300 font-bold text-lg mb-1">£12/hr</div>
+            <span class="text-xs text-slate-400">No call-out fee. Flexible timings.</span>
+          </div>
+          <div class="card rounded-2xl p-6 flex flex-col items-center text-center">
+            <div class="mb-3 text-fuchsia-400">
+              <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><ellipse cx="12" cy="12" rx="9" ry="3.5"/><path d="M12 3a9 9 0 0 1 0 18"/></svg>
+            </div>
+            <h3 class="font-semibold mb-2 text-lg">Website Creation</h3>
+            <p class="text-slate-300 text-sm mb-2">Modern, responsive websites for individuals and small businesses. Fast, affordable, and tailored to your needs.</p>
+            <a href="mailto:kartheekreddy@outlook.in?subject=Website%20Enquiry" class="mt-3 inline-flex items-center gap-2 px-4 py-2 rounded-lg font-semibold bg-fuchsia-600 text-white shadow hover:bg-fuchsia-700 focus:outline-none focus:ring-2 focus:ring-fuchsia-400 transition">Enquire now</a>
+          </div>
+          <div class="card rounded-2xl p-6 flex flex-col items-center text-center">
+            <div class="mb-3 text-emerald-400">
+              <svg width="36" height="36" fill="none" stroke="currentColor" stroke-width="1.7" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><rect x="8" y="19" width="8" height="2" rx="1"/></svg>
+            </div>
+            <h3 class="font-semibold mb-2 text-lg">Custom PC Builds</h3>
+            <p class="text-slate-300 text-sm mb-2">Affordable custom PCs for work, study, or gaming. Free home installation and setup included.</p>
+            <div class="text-cyan-300 font-bold text-lg mb-1">from £150</div>
+            <span class="text-xs text-slate-400">Includes delivery & setup at your home.</span>
+          </div>
+        </div>
+        <p class="text-center text-slate-400 text-sm mt-8">For all service requests, please <a href="mailto:kartheekreddy@outlook.in" class="text-cyan-300 hover:underline">email me directly</a>.</p>
+      </div>
+    </section>
+
+    <!-- Focus areas -->
+    <section id="focus" class="px-6 py-12 md:py-16 bg-slate-900/40 border-y border-white/5 fade-up">
+      <div class="mx-auto max-w-6xl">
+        <h2 class="section-heading text-3xl md:text-4xl font-bold mb-6">Focus areas</h2>
         <div class="grid md:grid-cols-3 gap-6">
           <div class="card rounded-2xl p-6">
             <h3 class="font-semibold mb-2">Offensive Security</h3>
@@ -175,9 +389,9 @@
     </section>
 
     <!-- Skills -->
-    <section id="skills" class="px-6 py-16 md:py-20">
+    <section id="skills" class="px-6 py-16 md:py-20 fade-up mb-0">
       <div class="mx-auto max-w-6xl">
-        <h2 class="text-3xl md:text-4xl font-bold mb-8">Skills</h2>
+        <h2 class="section-heading text-3xl md:text-4xl font-bold mb-8">Skills</h2>
         <div class="grid md:grid-cols-3 gap-6">
           <div class="card rounded-2xl p-6">
             <h3 class="font-semibold mb-3">Programming</h3>
@@ -203,9 +417,9 @@
     </section>
 
     <!-- Experience -->
-    <section id="experience" class="px-6 py-16 md:py-20">
+    <section id="experience" class="px-6 py-16 md:py-20 fade-up mt-10">
       <div class="mx-auto max-w-6xl">
-        <h2 class="text-3xl md:text-4xl font-bold mb-8">Experience</h2>
+        <h2 class="section-heading text-3xl md:text-4xl font-bold mb-8">Experience</h2>
         <ol class="relative border-s border-white/10">
           <li class="ms-6 pb-10">
             <span class="absolute -start-3 top-1.5 h-6 w-6 rounded-full bg-cyan-500/20 border border-cyan-400/30"></span>
@@ -235,10 +449,10 @@
     </section>
 
     <!-- Education & Certifications -->
-    <section id="education" class="px-6 py-16 md:py-20 bg-slate-900/40 border-y border-white/5">
+    <section id="education" class="px-6 py-16 md:py-20 bg-slate-900/40 border-y border-white/5 fade-up">
       <div class="mx-auto max-w-6xl grid md:grid-cols-2 gap-6">
         <div class="card rounded-2xl p-6">
-          <h2 class="text-2xl font-bold mb-3">Education</h2>
+          <h2 class="section-heading text-2xl font-bold mb-3">Education</h2>
           <div class="mb-4">
             <h3 class="font-semibold">MSc Advanced Cyber Security — Cardiff Metropolitan University</h3>
             <p class="text-sm text-slate-400">Sep 2024 – 2025</p>
@@ -251,20 +465,40 @@
           </div>
         </div>
         <div class="card rounded-2xl p-6">
-          <h2 class="text-2xl font-bold mb-3">Certifications</h2>
+          <h2 class="section-heading text-2xl font-bold mb-3">Certifications</h2>
           <ul class="space-y-2 text-sm">
-            <li>IBM Cloud Essentials (CC0103EN) — edX <span class="text-slate-400">(Jun 2023)</span></li>
-            <li>Introduction to Cybersecurity Essentials — Coursera & IBM <span class="text-slate-400">(Mar 2023)</span></li>
+            <li>
+              <span class="font-semibold">Ethical Hacking</span> — Cisco Networking Academy <span class="text-slate-400">(May 2025)</span><br>
+              <span class="text-xs text-slate-400">Credential ID: c66096b2-baa4-4c06-bceb-cdb7785364de</span>
+            </li>
+            <li>
+              <span class="font-semibold">Digital Awareness</span> — Cisco Networking Academy <span class="text-slate-400">(Apr 2025)</span>
+            </li>
+            <li>
+              <span class="font-semibold">Ethical Hacking Essentials (EHE)</span> — Coursera <span class="text-slate-400">(Oct 2023)</span><br>
+              <span class="text-xs text-slate-400">Credential ID: R47VCGDX9V34</span>
+            </li>
+            <li>
+              <span class="font-semibold">IBM Cloud Essentials (CC0103EN)</span> — edX <span class="text-slate-400">(Jun 2023)</span><br>
+              <span class="text-xs text-slate-400">Credential ID: 4a7f615645734d83a5223e97206c3e52</span>
+            </li>
+            <li>
+              <span class="font-semibold">Introduction to Cybersecurity Essentials by IBM</span> — Coursera <span class="text-slate-400">(May 2023)</span><br>
+              <span class="text-xs text-slate-400">Credential ID: HVQVN94VY568</span>
+            </li>
+            <li>
+              <span class="font-semibold">Cyber Incident Response by Infosec</span> — Coursera <span class="text-slate-400">(Mar 2023)</span><br>
+              <span class="text-xs text-slate-400">Credential ID: 2NV6KNWVJSFH</span>
+            </li>
           </ul>
-          <p class="mt-3 text-xs text-slate-400">*Add links to certificates if available.</p>
         </div>
       </div>
     </section>
 
     <!-- Projects -->
-    <section id="projects" class="px-6 py-16 md:py-20">
+    <section id="projects" class="px-6 py-16 md:py-20 fade-up">
       <div class="mx-auto max-w-6xl">
-        <h2 class="text-3xl md:text-4xl font-bold mb-8">Projects</h2>
+        <h2 class="section-heading text-3xl md:text-4xl font-bold mb-8">Projects</h2>
         <!-- Filters -->
         <div class="flex flex-wrap gap-2 mb-6">
           <button class="px-3 py-1.5 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-sm" data-filter="all">All</button>
@@ -313,9 +547,9 @@
     </section>
 
     <!-- Achievements / Badges -->
-    <section id="achievements" class="px-6 py-16 md:py-20 bg-slate-900/40 border-y border-white/5">
+    <section id="achievements" class="px-6 py-16 md:py-20 bg-slate-900/40 border-y border-white/5 fade-up">
       <div class="mx-auto max-w-6xl">
-        <h2 class="text-3xl md:text-4xl font-bold mb-8">Achievements</h2>
+        <h2 class="section-heading text-3xl md:text-4xl font-bold mb-8">Achievements</h2>
         <div class="grid md:grid-cols-2 gap-6">
           <div class="card rounded-2xl p-6">
             <h3 class="font-semibold">TryHackMe</h3>
@@ -332,37 +566,38 @@
               <a class="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10" target="_blank" href="https://github.com/KartheekReddy100">GitHub</a>
               <a class="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10" target="_blank" href="https://x.com/_AZHDAY">X</a>
               <a class="px-3 py-1 rounded-lg bg-white/5 hover:bg-white/10" target="_blank" href="https://www.instagram.com/kartheekreddy_nallamilli/">Instagram</a>
-            </div>
+            </div>  
           </div>
         </div>
       </div>
     </section>
 
     <!-- Blog (placeholder) -->
-    <section id="blog" class="px-6 py-16 md:py-20">
+    <section id="blog" class="px-6 py-16 md:py-20 fade-up">
       <div class="mx-auto max-w-6xl">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Blog</h2>
+        <h2 class="section-heading text-3xl md:text-4xl font-bold mb-4">Blog</h2>
         <p class="text-slate-300">Coming soon — short write‑ups on labs, cheatsheets, and project notes.</p>
       </div>
     </section>
 
     <!-- Contact -->
-    <section id="contact" class="px-6 py-16 md:py-20">
+    <section id="contact" class="px-6 py-16 md:py-20 fade-up">
       <div class="mx-auto max-w-3xl text-center">
-        <h2 class="text-3xl md:text-4xl font-bold mb-4">Get in touch</h2>
+        <h2 class="section-heading text-3xl md:text-4xl font-bold mb-4">Get in touch</h2>
         <p class="text-slate-300 max-w-2xl mx-auto">Open to internships, part‑time roles, and research collaborations. The fastest way to reach me is email.</p>
         <div class="mt-6 flex items-center justify-center gap-3 flex-wrap">
           <a href="mailto:kartheekreddy@outlook.in" class="px-5 py-3 rounded-xl bg-cyan-500/20 border border-cyan-400/40 text-cyan-200 hover:bg-cyan-500/30 focus-ring">Email</a>
-          <button id="copyEmail" class="px-5 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 focus-ring">Copy email</button>
+          <button id="copyEmail" class="px-4 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 focus-ring flex items-center justify-center" title="Copy email" aria-label="Copy email">
+            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="none" viewBox="0 0 24 24" stroke="currentColor" class="text-cyan-300"><rect x="9" y="9" width="13" height="13" rx="2" stroke-width="1.7"/><rect x="3" y="3" width="13" height="13" rx="2" stroke-width="1.7"/></svg>
+          </button>
           <a href="https://www.linkedin.com/in/kartheek-nallamilli/" target="_blank" class="px-5 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 focus-ring">LinkedIn</a>
           <a href="https://wa.me/qr/2AOY2XFCWBCFB1" target="_blank" class="px-5 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 focus-ring">WhatsApp</a>
         </div>
       </div>
     </section>
-  </main>
 
-  <!-- Floating CTA -->
-  <a id="floatCta" href="#contact" class="fixed bottom-5 right-5 z-40 px-4 py-3 rounded-xl bg-cyan-500/20 border border-cyan-400/40 text-cyan-100 backdrop-blur hover:bg-cyan-500/30">Hire me</a>
+    <!-- Floating CTA -->
+    <a id="floatCta" href="#contact" class="fixed bottom-5 right-5 z-40 px-4 py-3 rounded-xl bg-cyan-500/20 border border-cyan-400/40 text-cyan-100 backdrop-blur hover:bg-cyan-500/30 floating-cta">Hire me</a>
 
   <footer class="border-t border-white/10 text-center text-sm text-slate-400 py-6">
     <p>© <span id="year"></span> N. S. S. Kartheek Reddy. All rights reserved.</p>
@@ -393,7 +628,7 @@
       const obs = new IntersectionObserver((entries)=>{
         for (const e of entries) if (e.isIntersecting){e.target.classList.add('is-visible');obs.unobserve(e.target);} 
       },{threshold:0.12});
-      document.querySelectorAll('.card, .fade-up').forEach(el=>obs.observe(el));
+      document.querySelectorAll('.card, .fade-up, .section-heading').forEach(el=>obs.observe(el));
     }
 
     // dynamic footer year
@@ -414,11 +649,40 @@
 
     // copy email
     document.getElementById('copyEmail')?.addEventListener('click', async ()=>{
-      try{ await navigator.clipboard.writeText('kartheekreddy@outlook.in');
+      try{
+        await navigator.clipboard.writeText('kartheekreddy@outlook.in');
         const btn = document.getElementById('copyEmail');
-        const txt = btn.textContent; btn.textContent = 'Copied!';
-        setTimeout(()=>btn.textContent = txt, 1400);
+        const originalIcon = btn.innerHTML;
+        btn.innerHTML = '<span style="font-size:1rem;color:#22d3ee;">Copied!</span>';
+        setTimeout(()=>btn.innerHTML = originalIcon, 1400);
       }catch(e){ alert('Copy failed. Email: kartheekreddy@outlook.in'); }
+    });
+
+    // Welcome carousel in different languages
+    const welcomes = [
+      'Welcome', 'Bienvenue', 'Willkommen', 'Bienvenido', 'Benvenuto', '欢迎', 'ようこそ', '환영합니다', 'Добро пожаловать', 'Bem-vindo', 'स्वागत है', 'أهلاً وسهلاً', 'Selamat datang', 'Välkommen', 'Tervetuloa', 'Witamy', 'Velkommen', 'Welkom', 'Καλώς ήρθατε', 'Hoş geldiniz'
+    ];
+    let welcomeIdx = 0;
+    const welcomeEl = document.getElementById('welcome-carousel');
+    function showNextWelcome() {
+      if (!welcomeEl) return;
+      welcomeEl.style.opacity = 0;
+      setTimeout(() => {
+        welcomeIdx = (welcomeIdx + 1) % welcomes.length;
+        welcomeEl.textContent = welcomes[welcomeIdx];
+        welcomeEl.style.opacity = 1;
+      }, 500);
+    }
+    setInterval(showNextWelcome, 2000);
+
+    // Scroll-to-top button logic
+    const scrollBtn = document.getElementById('scrollTopBtn');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 300) scrollBtn.style.display = 'block';
+      else scrollBtn.style.display = 'none';
+    });
+    scrollBtn.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   </script>
 </body>
