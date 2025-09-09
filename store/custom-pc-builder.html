@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Build a Custom PC — Kartheek Reddy Store</title>
   <meta name="description" content="Build your own custom PC. Choose case, processor, memory, storage, GPU, and more. Get a price estimate and send a request." />
+  <meta property="og:title" content="Build a Custom PC — Kartheek Reddy Store" />
+  <meta property="og:description" content="Build your own custom PC. Choose case, processor, memory, storage, GPU, and more. Get a price estimate and send a request." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://kartheekreddy.com/store/custom-pc-builder.html" />
+  <meta property="og:image" content="https://kartheekreddy.com/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Build a Custom PC — Kartheek Reddy Store" />
+  <meta name="twitter:description" content="Build your own custom PC. Choose case, processor, memory, storage, GPU, and more. Get a price estimate and send a request." />
+  <meta name="twitter:image" content="https://kartheekreddy.com/og-image.png" />
   <link rel="canonical" href="https://kartheekreddy.com/store/custom-pc-builder.html" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -69,6 +78,15 @@
       background: linear-gradient(90deg, var(--primary), var(--emerald, #10b981));
       box-shadow: 0 8px 32px 0 #0ea5e9cc;
     }
+    .announcement-bar {
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      color: #fff;
+      text-align: center;
+      padding: 0.7rem 0.5rem;
+      font-weight: 600;
+      font-size: 1.05rem;
+      letter-spacing: 0.01em;
+    }
     @media (max-width: 768px) {
       .store-btn, .store-btn-main {
         max-width: 100%;
@@ -80,40 +98,42 @@
   </style>
 </head>
 <body>
+  <div class="announcement-bar" id="announcementBar">
+    🎉 Summer Sale: Free WiFi adapter with every custom PC build! <button aria-label="Close announcement" onclick="this.parentElement.style.display='none'" class="ml-2 px-2 py-1 rounded focus-ring bg-white/10 hover:bg-white/20">×</button>
+  </div>
   <header id="site-header" class="fixed top-0 inset-x-0 z-50 backdrop-blur border-b border-white/10 bg-slate-900/80 transition-transform">
-    <nav class="mx-auto max-w-6xl px-4">
-      <div class="flex items-center justify-between h-16">
-        <a href="../index.html" class="font-extrabold tracking-tight text-white text-lg md:text-xl">Kartheek<span class="text-cyan-400">.sec</span></a>
-        <button id="menuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-white/5 focus-ring" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
-          <svg width="24" height="24" fill="none" stroke="currentColor" class="opacity-80"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-        <ul class="hidden md:flex items-center gap-6 text-slate-300">
-          <li><a class="hover:text-white/90 focus-ring" href="../index.html#about">About</a></li>
-          <li><a class="hover:text-white/90 focus-ring" href="../index.html#projects">Projects</a></li>
-          <li><a class="hover:text-white/90 focus-ring" href="../store.html">Shop</a></li>
-          <li><a class="hover:text-white/90 focus-ring" href="../index.html#contact">Contact</a></li>
-        </ul>
-      </div>
+    <nav class="mx-auto max-w-6xl px-4 flex items-center justify-between h-16">
+      <a href="../index.html" class="font-extrabold tracking-tight text-white text-lg md:text-xl">Kartheek<span class="text-cyan-400">.sec</span></a>
+      <ul class="hidden md:flex items-center gap-6 text-slate-300">
+        <li><a class="hover:text-white/90 focus-ring" href="../index.html">Home</a></li>
+        <li><a class="hover:text-white/90 focus-ring" href="../store.html">Store</a></li>
+        <li><a class="hover:text-white/90 focus-ring" href="custom-pc-builder.html">Custom PC</a></li>
+        <li><a class="hover:text-white/90 focus-ring" href="../store.html#faq">FAQ</a></li>
+        <li><a class="hover:text-white/90 focus-ring" href="../index.html#contact">Contact</a></li>
+      </ul>
+      <button id="menuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-white/5 focus-ring" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <svg width="24" height="24" fill="none" stroke="currentColor" class="opacity-80"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
     </nav>
     <div id="mobileNav" class="md:hidden hidden border-t border-white/10 bg-slate-900/90">
       <ul class="max-w-6xl mx-auto px-4 py-4 space-y-2">
-        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="../index.html#about">About</a></li>
-        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="../index.html#projects">Projects</a></li>
-        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="../store.html">Shop</a></li>
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="../index.html">Home</a></li>
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="../store.html">Store</a></li>
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="custom-pc-builder.html">Custom PC</a></li>
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="../store.html#faq">FAQ</a></li>
         <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="../index.html#contact">Contact</a></li>
       </ul>
     </div>
   </header>
-
-  <main id="main" class="pt-20">
+  <main id="main" class="pt-24">
     <section class="px-6 py-12 md:py-20">
       <div class="mx-auto max-w-2xl">
-        <h1 class="text-3xl md:text-4xl font-bold mb-8">Build a Custom PC</h1>
-        <form id="pcBuilderForm" class="space-y-8 bg-slate-900/60 p-6 rounded-2xl shadow-lg">
+        <h1 class="text-3xl md:text-4xl font-extrabold mb-8 section-heading">Build a Custom PC</h1>
+        <form id="pcBuilderForm" class="space-y-8 bg-slate-900/60 p-6 rounded-2xl shadow-lg" aria-label="Custom PC Builder">
           <div>
             <h2 class="section-heading text-xl">Case</h2>
             <div class="desc">Choose your preferred case size and style.</div>
-            <select name="case" class="w-full rounded-lg p-2 bg-slate-800 text-white" required>
+            <select name="case" class="w-full rounded-lg p-2 bg-slate-800 text-white" required aria-label="Case">
               <option value="" disabled selected>Select a case</option>
               <option value="35">Mini Tower (£35)</option>
               <option value="50">Mid Tower (£50)</option>
@@ -123,7 +143,7 @@
           <div>
             <h2 class="section-heading text-xl">Processor</h2>
             <div class="desc">Balanced for your needs. All CPUs include cooler.</div>
-            <select name="cpu" class="w-full rounded-lg p-2 bg-slate-800 text-white" required>
+            <select name="cpu" class="w-full rounded-lg p-2 bg-slate-800 text-white" required aria-label="Processor">
               <option value="" disabled selected>Select a processor</option>
               <option value="60">Intel i3 10th Gen (£60)</option>
               <option value="95">Intel i5 10th Gen (£95)</option>
@@ -136,7 +156,7 @@
           <div>
             <h2 class="section-heading text-xl">Memory (RAM)</h2>
             <div class="desc">DDR4, 2666MHz or faster.</div>
-            <select name="ram" class="w-full rounded-lg p-2 bg-slate-800 text-white" required>
+            <select name="ram" class="w-full rounded-lg p-2 bg-slate-800 text-white" required aria-label="Memory (RAM)">
               <option value="" disabled selected>Select RAM</option>
               <option value="25">8GB (£25)</option>
               <option value="45">16GB (£45)</option>
@@ -145,19 +165,22 @@
           </div>
           <div>
             <h2 class="section-heading text-xl">Storage</h2>
-            <div class="desc">Fast SSDs for OS, HDD for extra space.</div>
-            <select name="storage" class="w-full rounded-lg p-2 bg-slate-800 text-white" required>
-              <option value="" disabled selected>Select storage</option>
-              <option value="30">256GB SSD (£30)</option>
-              <option value="45">512GB SSD (£45)</option>
-              <option value="75">1TB SSD (£75)</option>
-              <option value="35">1TB HDD (£35)</option>
-            </select>
+            <div class="desc">Fast SSDs for OS, HDD for extra space. Add more if needed.</div>
+            <div id="storageFields">
+              <select name="storage" class="w-full rounded-lg p-2 bg-slate-800 text-white mb-2" required aria-label="Storage">
+                <option value="" disabled selected>Select storage</option>
+                <option value="30">256GB SSD (£30)</option>
+                <option value="45">512GB SSD (£45)</option>
+                <option value="75">1TB SSD (£75)</option>
+                <option value="35">1TB HDD (£35)</option>
+              </select>
+            </div>
+            <button type="button" id="addStorageBtn" class="mt-2 store-btn w-full max-w-xs text-center">Add another storage</button>
           </div>
           <div>
             <h2 class="section-heading text-xl">Graphics Card (GPU)</h2>
             <div class="desc">Choose integrated for office/browsing, or a dedicated card for gaming/design.</div>
-            <select name="gpu" class="w-full rounded-lg p-2 bg-slate-800 text-white" required>
+            <select name="gpu" class="w-full rounded-lg p-2 bg-slate-800 text-white" required aria-label="Graphics Card (GPU)">
               <option value="" disabled selected>Select GPU</option>
               <option value="0">Integrated Graphics (£0)</option>
               <option value="90">NVIDIA GTX 1650 (£90)</option>
@@ -179,51 +202,35 @@
           <div class="mt-8 p-6 rounded-xl bg-slate-800 text-center">
             <div class="text-lg mb-2">Estimated Price:</div>
             <div id="estimate" class="text-3xl font-bold text-cyan-400">£0</div>
-            <button type="submit" class="store-btn-main w-full max-w-xs text-center text-lg font-bold transition mt-6">Send Request</button>
+            <button type="submit" class="store-btn-main w-full max-w-xs text-center text-lg font-bold transition mt-6" aria-label="Send Request">Send Request</button>
             <div class="text-xs text-slate-400 mt-2">* Final price may vary based on availability and your requirements.</div>
           </div>
         </form>
+        <!-- Confirmation Modal -->
+        <div id="confirmationModal" class="fixed inset-0 bg-black/60 flex items-center justify-center z-50 hidden">
+          <div class="bg-slate-900 rounded-2xl p-8 max-w-sm w-full text-center shadow-lg">
+            <h2 class="text-2xl font-bold mb-4 text-emerald-400">Request Sent!</h2>
+            <p class="text-slate-200 mb-6">Thank you for your interest. We will get back to you soon.</p>
+            <button onclick="document.getElementById('confirmationModal').classList.add('hidden')" class="store-btn-main w-full max-w-xs text-center">Close</button>
+          </div>
+        </div>
       </div>
     </section>
   </main>
-
   <footer class="border-t border-white/10 text-center text-sm text-slate-400 py-6">
-    <p>© <span id="year"></span> N. S. S. Kartheek Reddy. All rights reserved.</p>
-  </footer>
-
-  <script>
-    // Estimate calculation
-    const form = document.getElementById('pcBuilderForm');
-    const estimate = document.getElementById('estimate');
-    form.addEventListener('change', () => {
-      let total = 0;
-      const selects = form.querySelectorAll('select');
-      selects.forEach(sel => {
-        if (sel.value) total += parseInt(sel.value);
-      });
-      form.querySelectorAll('input[type=checkbox]:checked').forEach(cb => {
-        total += parseInt(cb.value);
-      });
-      estimate.textContent = '£' + total;
-    });
-    // Footer year
-    document.getElementById('year').textContent = new Date().getFullYear();
-    // Send Request
-    form.addEventListener('submit', function(e) {
-      e.preventDefault();
-      let summary = '';
-      const selects = form.querySelectorAll('select');
-      selects.forEach(sel => {
-        const label = sel.previousElementSibling.previousElementSibling.textContent;
-        const option = sel.options[sel.selectedIndex].text;
-        summary += `${label}: ${option}\n`;
-      });
-      form.querySelectorAll('input[type=checkbox]').forEach(cb => {
-        if (cb.checked) summary += `${cb.parentElement.textContent.trim()}\n`;
-      });
-      summary += `Estimated Price: ${estimate.textContent}`;
-      window.location.href = `mailto:kartheekreddysec@gmail.com?subject=Custom%20PC%20Build%20Request&body=${encodeURIComponent(summary)}`;
-    });
-  </script>
-</body>
-</html>
+    <div class="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto px-4 gap-2">
+      <div>
+        <p>© <span id="year"></span> N. S. S. Kartheek Reddy. All rights reserved.</p>
+      </div>
+      <div class="flex gap-4 mt-2 md:mt-0">
+        <a href="../index.html" class="hover:text-cyan-400">Home</a>
+        <a href="../store.html" class="hover:text-cyan-400">Store</a>
+        <a href="custom-pc-builder.html" class="hover:text-cyan-400">Custom PC</a>
+        <a href="../index.html#contact" class="hover:text-cyan-400">Contact</a>
+        <a href="https://github.com/KartheekReddy100" target="_blank" aria-label="GitHub" class="hover:text-cyan-400"><svg width="20" height="20" fill="currentColor" class="inline"><use href="#github-icon"/></svg></a>
+        <a href="https://x.com/SatyaSaiKa2209" target="_blank" aria-label="X.com" class="hover:text-cyan-400"><svg width="20" height="20" fill="currentColor" class="inline"><use href="#x-icon"/></svg></a>
+        <a href="https://www.instagram.com/kartheekreddy_nallamilli/" target="_blank" aria-label="Instagram" class="hover:text-cyan-400"><svg width="20" height="20" fill="currentColor" class="inline"><use href="#instagram-icon"/></svg></a>
+      </div>
+    </div>
+    <svg style="display:none">
+      <symbol id="github-icon" viewBox="0 0 24 24"><path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.1 3.29 9.43 7.86 10.96.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.75.41-1.27.74-1.56-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.0

@@ -56,6 +56,10 @@
       border-radius: 1.4rem !important;
       box-shadow: 0 8px 32px 0 rgba(14,165,233,0.13), 0 2px 8px 0 rgba(168,85,247,0.09);
       transition: box-shadow 0.2s, transform 0.2s;
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
     .card-gradient .card:hover {
       box-shadow: 0 8px 32px 0 #0ea5e9cc, 0 2px 8px 0 #a855f7aa;
@@ -100,25 +104,25 @@
 </head>
 <body>
   <header id="site-header" class="fixed top-0 inset-x-0 z-50 backdrop-blur border-b border-white/10 bg-slate-900/80 transition-transform">
-    <nav class="mx-auto max-w-6xl px-4">
-      <div class="flex items-center justify-between h-16">
-        <a href="index.html" class="font-extrabold tracking-tight text-white text-lg md:text-xl">Kartheek<span class="text-cyan-400">.sec</span></a>
-        <button id="menuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-white/5 focus-ring" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
-          <svg width="24" height="24" fill="none" stroke="currentColor" class="opacity-80"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-        </button>
-        <ul class="hidden md:flex items-center gap-6 text-slate-300">
-          <li><a class="hover:text-white/90 focus-ring" href="index.html#about">About</a></li>
-          <li><a class="hover:text-white/90 focus-ring" href="index.html#projects">Projects</a></li>
-          <li><a class="hover:text-white/90 focus-ring" href="store.html">Shop</a></li>
-          <li><a class="hover:text-white/90 focus-ring" href="index.html#contact">Contact</a></li>
-        </ul>
-      </div>
+    <nav class="mx-auto max-w-6xl px-4 flex items-center justify-between h-16">
+      <a href="index.html" class="font-extrabold tracking-tight text-white text-lg md:text-xl">Kartheek<span class="text-cyan-400">.sec</span></a>
+      <ul class="hidden md:flex items-center gap-6 text-slate-300">
+        <li><a class="hover:text-white/90 focus-ring" href="index.html">Home</a></li>
+        <li><a class="hover:text-white/90 focus-ring" href="store.html">Store</a></li>
+        <li><a class="hover:text-white/90 focus-ring" href="store/custom-pc-builder.html">Custom PC</a></li>
+        <li><a class="hover:text-white/90 focus-ring" href="store.html#faq">FAQ</a></li>
+        <li><a class="hover:text-white/90 focus-ring" href="index.html#contact">Contact</a></li>
+      </ul>
+      <button id="menuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-white/5 focus-ring" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+        <svg width="24" height="24" fill="none" stroke="currentColor" class="opacity-80"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+      </button>
     </nav>
     <div id="mobileNav" class="md:hidden hidden border-t border-white/10 bg-slate-900/90">
       <ul class="max-w-6xl mx-auto px-4 py-4 space-y-2">
-        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="index.html#about">About</a></li>
-        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="index.html#projects">Projects</a></li>
-        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="store.html">Shop</a></li>
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="index.html">Home</a></li>
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="store.html">Store</a></li>
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="store/custom-pc-builder.html">Custom PC</a></li>
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="store.html#faq">FAQ</a></li>
         <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="index.html#contact">Contact</a></li>
       </ul>
     </div>
@@ -128,49 +132,94 @@
     <section class="px-6 py-16 md:py-20">
       <div class="mx-auto max-w-6xl">
         <h1 class="section-heading text-3xl md:text-4xl font-bold mb-2">PC Store</h1>
-        <p class="text-slate-300 mb-10 text-lg">Shop competitively-priced, quality refurbished desktops and custom PC builds. All systems are tested and ready for work, study, or play. Fast local support and honest advice included.</p>
-        <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
-          <div class="card-gradient">
-            <div class="card p-6 rounded-xl">
-              <img src="https://source.unsplash.com/collection/190727/400x300" alt="Gaming PC" class="rounded mb-4 h-48 w-full object-cover">
-              <h3 class="font-semibold text-xl mb-2">Gaming Beast 5000</h3>
-              <p class="text-slate-300 mb-4">High-end gaming desktop with the latest RTX graphics.</p>
-              <p class="text-slate-400 font-semibold">£1,999</p>
-            </div>
+        <p class="text-slate-300 mb-6 text-lg">Shop competitively-priced, quality refurbished desktops and custom PC builds. All systems are tested and ready for work, study, or play. Fast local support and honest advice included.</p>
+        <!-- Filter & Sort -->
+        <div class="flex flex-col md:flex-row md:items-center gap-4 mb-8">
+          <div class="flex gap-2 flex-wrap">
+            <label class="text-slate-400 text-sm">Filter:</label>
+            <button class="filter-btn px-3 py-1 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-sm" data-filter="all">All</button>
+            <button class="filter-btn px-3 py-1 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-sm" data-filter="refurbished">Refurbished</button>
+            <button class="filter-btn px-3 py-1 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-sm" data-filter="custom">Custom</button>
           </div>
-          <div class="card-gradient">
-            <div class="card p-6 rounded-xl">
-              <img src="https://source.unsplash.com/collection/483251/400x300" alt="Workstation PC" class="rounded mb-4 h-48 w-full object-cover">
-              <h3 class="font-semibold text-xl mb-2">Workstation Pro X</h3>
-              <p class="text-slate-300 mb-4">Designed for heavy multitasking and rendering workloads.</p>
-              <p class="text-slate-400 font-semibold">£2,499</p>
-            </div>
+          <div class="flex gap-2 flex-wrap">
+            <label class="text-slate-400 text-sm">Sort:</label>
+            <button class="sort-btn px-3 py-1 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-sm" data-sort="price-asc">Price ↑</button>
+            <button class="sort-btn px-3 py-1 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 text-sm" data-sort="price-desc">Price ↓</button>
           </div>
-          <div class="card-gradient">
+        </div>
+        <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3" id="productGrid">
+          <div class="card-gradient" data-tags="refurbished" data-price="80">
             <div class="card p-6 rounded-xl">
-              <img src="https://source.unsplash.com/collection/8351296/400x300" alt="Budget PC" class="rounded mb-4 h-48 w-full object-cover">
-              <h3 class="font-semibold text-xl mb-2">Budget Build 101</h3>
-              <p class="text-slate-300 mb-4">Affordable starter PC for everyday use and light gaming.</p>
-              <p class="text-slate-400 font-semibold">£699</p>
-            </div>
-          </div>
-          <div class="card-gradient">
-            <div class="card p-6 rounded-xl">
-              <img src="https://i.postimg.cc/c4LgkwY1/s-l1600.webp" alt="MINI PC HP EliteDesk 260G3" class="rounded mb-4 h-48 w-full object-cover">
+              <span class="inline-block bg-yellow-400/90 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full mb-2" aria-label="Refurbished">Refurbished</span>
+              <img src="https://i.postimg.cc/c4LgkwY1/s-l1600.webp" alt="MINI PC HP EliteDesk 260G3" class="rounded mb-4 h-48 w-full object-cover" loading="lazy">
               <h3 class="font-semibold text-xl mb-2">MINI PC HP EliteDesk 260G3</h3>
               <p class="text-slate-300 mb-4">i5 7th Gen, 4GB RAM, 256GB SSD, Tiny PC, Windows 11.</p>
               <p class="text-slate-400 font-semibold">£80</p>
               <a href="store/MINI-PC-HP-EliteDesk-260G3.html" class="mt-4 inline-block px-4 py-2 rounded-lg bg-cyan-500 text-white font-bold text-center w-full hover:bg-cyan-600 transition">View Details</a>
             </div>
           </div>
-          <div class="card-gradient">
+          <div class="card-gradient" data-tags="refurbished" data-price="110">
             <div class="card p-6 rounded-xl">
-              <img src="https://images.squarespace-cdn.com/content/v1/6065dbd423870765d7cc67cf/1700565036456-ZQ6ZVQQ76T2CTPXCIGGA/_MG_4300.jpg?format=1500w" alt="HP ProDesk 400 G4 SFF" class="rounded mb-4 h-48 w-full object-cover">
+              <span class="inline-block bg-yellow-400/90 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full mb-2" aria-label="Refurbished">Refurbished</span>
+              <img src="https://images.squarespace-cdn.com/content/v1/6065dbd423870765d7cc67cf/1700565036456-ZQ6ZVQQ76T2CTPXCIGGA/_MG_4300.jpg?format=1500w" alt="HP ProDesk 400 G4 SFF" class="rounded mb-4 h-48 w-full object-cover" loading="lazy">
               <h3 class="font-semibold text-xl mb-2">HP ProDesk 400 G4 SFF</h3>
               <p class="text-slate-300 mb-4">i5 7th Gen, 8GB RAM, 240GB SSD, Windows 11 Desktop. Refurbished.</p>
               <p class="text-slate-400 font-semibold">£110</p>
               <a href="store/HP-ProDesk-400-G4-SFF.html" class="mt-4 inline-block px-4 py-2 rounded-lg bg-cyan-500 text-white font-bold text-center w-full hover:bg-cyan-600 transition">View Details</a>
             </div>
+          </div>
+          <div class="card-gradient" data-tags="custom" data-price="1999">
+            <div class="card p-6 rounded-xl">
+              <span class="inline-block bg-emerald-400/90 text-emerald-900 text-xs font-bold px-3 py-1 rounded-full mb-2" aria-label="Custom">Custom</span>
+              <img src="https://source.unsplash.com/collection/190727/400x300" alt="Gaming PC" class="rounded mb-4 h-48 w-full object-cover" loading="lazy">
+              <h3 class="font-semibold text-xl mb-2">Gaming Beast 5000</h3>
+              <p class="text-slate-300 mb-4">High-end gaming desktop with the latest RTX graphics.</p>
+              <p class="text-slate-400 font-semibold">£1,999</p>
+            </div>
+          </div>
+          <div class="card-gradient" data-tags="custom" data-price="2499">
+            <div class="card p-6 rounded-xl">
+              <span class="inline-block bg-emerald-400/90 text-emerald-900 text-xs font-bold px-3 py-1 rounded-full mb-2" aria-label="Custom">Custom</span>
+              <img src="https://source.unsplash.com/collection/483251/400x300" alt="Workstation PC" class="rounded mb-4 h-48 w-full object-cover" loading="lazy">
+              <h3 class="font-semibold text-xl mb-2">Workstation Pro X</h3>
+              <p class="text-slate-300 mb-4">Designed for heavy multitasking and rendering workloads.</p>
+              <p class="text-slate-400 font-semibold">£2,499</p>
+            </div>
+          </div>
+          <div class="card-gradient" data-tags="custom" data-price="699">
+            <div class="card p-6 rounded-xl">
+              <span class="inline-block bg-emerald-400/90 text-emerald-900 text-xs font-bold px-3 py-1 rounded-full mb-2" aria-label="Custom">Custom</span>
+              <img src="https://source.unsplash.com/collection/8351296/400x300" alt="Budget PC" class="rounded mb-4 h-48 w-full object-cover" loading="lazy">
+              <h3 class="font-semibold text-xl mb-2">Budget Build 101</h3>
+              <p class="text-slate-300 mb-4">Affordable starter PC for everyday use and light gaming.</p>
+              <p class="text-slate-400 font-semibold">£699</p>
+            </div>
+          </div>
+        </div>
+        <!-- Testimonials -->
+        <div class="mt-16 mb-10">
+          <h2 class="section-heading text-2xl font-bold mb-4">What Customers Say</h2>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div class="bg-slate-800 rounded-xl p-6 shadow">
+              <p class="text-slate-200 italic mb-2">“Great value and fast setup. My son loves his new PC!”</p>
+              <span class="text-slate-400 text-sm">— Sarah, Inverness</span>
+            </div>
+            <div class="bg-slate-800 rounded-xl p-6 shadow">
+              <p class="text-slate-200 italic mb-2">“Excellent support and honest advice. Highly recommend.”</p>
+              <span class="text-slate-400 text-sm">— Mike, Balloch</span>
+            </div>
+          </div>
+        </div>
+        <!-- FAQ -->
+        <div class="mb-10">
+          <h2 class="section-heading text-2xl font-bold mb-4">FAQ</h2>
+          <div class="bg-slate-800 rounded-xl p-6 shadow text-slate-200">
+            <p class="font-semibold mb-2">Q: Are your PCs new or refurbished?</p>
+            <p class="mb-4">A: Most are refurbished, tested, and cleaned. Custom builds use new parts unless stated.</p>
+            <p class="font-semibold mb-2">Q: Do you offer support?</p>
+            <p class="mb-4">A: Yes, local support and advice are included with every purchase.</p>
+            <p class="font-semibold mb-2">Q: Can I request a specific configuration?</p>
+            <p>A: Yes! Use the custom PC builder or email for a quote.</p>
           </div>
         </div>
         <div class="flex justify-center mt-12">
@@ -181,7 +230,25 @@
   </main>
 
   <footer class="border-t border-white/10 text-center text-sm text-slate-400 py-6">
-    <p>© <span id="year"></span> N. S. S. Kartheek Reddy. All rights reserved.</p>
+    <div class="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto px-4 gap-2">
+      <div>
+        <p>© <span id="year"></span> N. S. S. Kartheek Reddy. All rights reserved.</p>
+      </div>
+      <div class="flex gap-4 mt-2 md:mt-0">
+        <a href="../index.html" class="hover:text-cyan-400">Home</a>
+        <a href="../store.html" class="hover:text-cyan-400">Store</a>
+        <a href="custom-pc-builder.html" class="hover:text-cyan-400">Custom PC</a>
+        <a href="../index.html#contact" class="hover:text-cyan-400">Contact</a>
+        <a href="https://github.com/KartheekReddy100" target="_blank" aria-label="GitHub" class="hover:text-cyan-400"><svg width="20" height="20" fill="currentColor" class="inline"><use href="#github-icon"/></svg></a>
+        <a href="https://x.com/SatyaSaiKa2209" target="_blank" aria-label="X.com" class="hover:text-cyan-400"><svg width="20" height="20" fill="currentColor" class="inline"><use href="#x-icon"/></svg></a>
+        <a href="https://www.instagram.com/kartheekreddy_nallamilli/" target="_blank" aria-label="Instagram" class="hover:text-cyan-400"><svg width="20" height="20" fill="currentColor" class="inline"><use href="#instagram-icon"/></svg></a>
+      </div>
+    </div>
+    <svg style="display:none">
+      <symbol id="github-icon" viewBox="0 0 24 24"><path d="M12 .5C5.73.5.5 5.74.5 12.02c0 5.1 3.29 9.43 7.86 10.96.58.11.79-.25.79-.56 0-.28-.01-1.02-.02-2-3.2.7-3.88-1.54-3.88-1.54-.53-1.36-1.3-1.72-1.3-1.72-1.06-.72.08-.71.08-.71 1.17.08 1.78 1.2 1.78 1.2 1.04 1.78 2.73 1.27 3.4.97.11-.75.41-1.27.74-1.56-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.19-3.1-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 2.9-.39c.98 0 1.97.13 2.9.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.84 1.19 3.1 0 4.43-2.69 5.41-5.25 5.7.42.36.79 1.09.79 2.2 0 1.59-.01 2.87-.01 3.26 0 .31.21.68.8.56C20.71 21.45 24 17.12 24 12.02 24 5.74 18.77.5 12 .5z"/></symbol>
+      <symbol id="x-icon" viewBox="0 0 24 24"><path d="M17.53 2.47a2.5 2.5 0 0 1 3.54 3.54L15.54 11l5.53 5.53a2.5 2.5 0 0 1-3.54 3.54L12 15.54l-5.53 5.53a2.5 2.5 0 0 1-3.54-3.54L8.46 13 2.93 7.47a2.5 2.5 0 0 1 3.54-3.54L12 8.46l5.53-5.99z"/></symbol>
+      <symbol id="instagram-icon" viewBox="0 0 24 24"><path d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5A4.25 4.25 0 0 0 20.5 16.25v-8.5A4.25 4.25 0 0 0 16.25 3.5h-8.5zm4.25 3.25a5.25 5.25 0 1 1 0 10.5 5.25 5.25 0 0 1 0-10.5zm0 1.5a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5zm6.25.75a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/></symbol>
+    </svg>
   </footer>
 
   <script>
@@ -203,6 +270,52 @@
     });
 
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Filtering & sorting
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const sortBtns = document.querySelectorAll('.sort-btn');
+    const productGrid = document.getElementById('productGrid');
+    let currentFilter = 'all';
+    let currentSort = null;
+
+    function getPrice(card) {
+      return parseInt(card.getAttribute('data-price')) || 0;
+    }
+
+    function applyFilterAndSort() {
+      const cards = Array.from(productGrid.querySelectorAll('.card-gradient'));
+      // Filter
+      cards.forEach(card => {
+        const tags = card.getAttribute('data-tags') || '';
+        card.style.display = (currentFilter === 'all' || tags.includes(currentFilter)) ? '' : 'none';
+      });
+      // Sort
+      if (currentSort) {
+        const visibleCards = cards.filter(card => card.style.display !== 'none');
+        visibleCards.sort((a, b) => {
+          const pa = getPrice(a);
+          const pb = getPrice(b);
+          return currentSort === 'price-asc' ? pa - pb : pb - pa;
+        });
+        // Append sorted visible cards in order, then hidden cards
+        visibleCards.forEach(card => productGrid.appendChild(card));
+        cards.filter(card => card.style.display === 'none').forEach(card => productGrid.appendChild(card));
+      }
+    }
+
+    filterBtns.forEach(btn => btn.addEventListener('click', () => {
+      currentFilter = btn.getAttribute('data-filter');
+      filterBtns.forEach(b => b.classList.remove('ring-2','ring-cyan-400/40','bg-white/10'));
+      btn.classList.add('ring-2','ring-cyan-400/40','bg-white/10');
+      applyFilterAndSort();
+    }));
+
+    sortBtns.forEach(btn => btn.addEventListener('click', () => {
+      currentSort = btn.getAttribute('data-sort');
+      sortBtns.forEach(b => b.classList.remove('ring-2','ring-cyan-400/40','bg-white/10'));
+      btn.classList.add('ring-2','ring-cyan-400/40','bg-white/10');
+      applyFilterAndSort();
+    }));
   </script>
 </body>
 </html>
