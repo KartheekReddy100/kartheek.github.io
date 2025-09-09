@@ -55,9 +55,30 @@
       background: rgba(30,41,59,0.82);
       border-radius: 1.4rem !important;
       box-shadow: 0 8px 32px 0 rgba(14,165,233,0.13), 0 2px 8px 0 rgba(168,85,247,0.09);
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .card-gradient .card:hover {
+      box-shadow: 0 8px 32px 0 #0ea5e9cc, 0 2px 8px 0 #a855f7aa;
+      transform: translateY(-6px) scale(1.03);
+      border-color: var(--primary);
+      background: rgba(30,41,59,0.93);
     }
     .focus-ring{outline:2px solid transparent;outline-offset:2px;transition:box-shadow .2s}
     .focus-ring:focus{box-shadow:0 0 0 2px var(--ring)}
+    .store-btn, .store-btn-main {
+      border-radius: 1.4rem;
+      font-size: 1.13rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--emerald, #10b981), var(--primary));
+      color: #fff;
+      box-shadow: 0 8px 32px 0 #10b98155;
+      border: none;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .store-btn:hover, .store-btn-main:hover {
+      background: linear-gradient(90deg, var(--primary), var(--emerald, #10b981));
+      box-shadow: 0 8px 32px 0 #0ea5e9cc;
+    }
   </style>
 </head>
 <body>
@@ -89,11 +110,12 @@
   <main id="main" class="pt-20">
     <section class="px-6 py-16 md:py-20">
       <div class="mx-auto max-w-6xl">
-        <h1 class="section-heading text-3xl md:text-4xl font-bold mb-8">PC Store</h1>
-        <div class="grid gap-8 md:grid-cols-3">
+        <h1 class="section-heading text-3xl md:text-4xl font-bold mb-2">PC Store</h1>
+        <p class="text-slate-300 mb-10 text-lg">Shop competitively-priced, quality refurbished desktops and custom PC builds. All systems are tested and ready for work, study, or play. Fast local support and honest advice included.</p>
+        <div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
           <div class="card-gradient">
             <div class="card p-6 rounded-xl">
-              <img src="https://source.unsplash.com/collection/190727/400x300" alt="Gaming PC" class="rounded mb-4">
+              <img src="https://source.unsplash.com/collection/190727/400x300" alt="Gaming PC" class="rounded mb-4 h-48 w-full object-cover">
               <h3 class="font-semibold text-xl mb-2">Gaming Beast 5000</h3>
               <p class="text-slate-300 mb-4">High-end gaming desktop with the latest RTX graphics.</p>
               <p class="text-slate-400 font-semibold">£1,999</p>
@@ -101,7 +123,7 @@
           </div>
           <div class="card-gradient">
             <div class="card p-6 rounded-xl">
-              <img src="https://source.unsplash.com/collection/483251/400x300" alt="Workstation PC" class="rounded mb-4">
+              <img src="https://source.unsplash.com/collection/483251/400x300" alt="Workstation PC" class="rounded mb-4 h-48 w-full object-cover">
               <h3 class="font-semibold text-xl mb-2">Workstation Pro X</h3>
               <p class="text-slate-300 mb-4">Designed for heavy multitasking and rendering workloads.</p>
               <p class="text-slate-400 font-semibold">£2,499</p>
@@ -109,7 +131,7 @@
           </div>
           <div class="card-gradient">
             <div class="card p-6 rounded-xl">
-              <img src="https://source.unsplash.com/collection/8351296/400x300" alt="Budget PC" class="rounded mb-4">
+              <img src="https://source.unsplash.com/collection/8351296/400x300" alt="Budget PC" class="rounded mb-4 h-48 w-full object-cover">
               <h3 class="font-semibold text-xl mb-2">Budget Build 101</h3>
               <p class="text-slate-300 mb-4">Affordable starter PC for everyday use and light gaming.</p>
               <p class="text-slate-400 font-semibold">£699</p>
@@ -117,7 +139,7 @@
           </div>
           <div class="card-gradient">
             <div class="card p-6 rounded-xl">
-              <img src="https://i.postimg.cc/c4LgkwY1/s-l1600.webp" alt="MINI PC HP EliteDesk 260G3" class="rounded mb-4">
+              <img src="https://i.postimg.cc/c4LgkwY1/s-l1600.webp" alt="MINI PC HP EliteDesk 260G3" class="rounded mb-4 h-48 w-full object-cover">
               <h3 class="font-semibold text-xl mb-2">MINI PC HP EliteDesk 260G3</h3>
               <p class="text-slate-300 mb-4">i5 7th Gen, 4GB RAM, 256GB SSD, Tiny PC, Windows 11.</p>
               <p class="text-slate-400 font-semibold">£80</p>
@@ -126,13 +148,16 @@
           </div>
           <div class="card-gradient">
             <div class="card p-6 rounded-xl">
-              <img src="https://i.postimg.cc/15zxg3xY/s-l1600-2.webp" alt="HP ProDesk 400 G4 SFF" class="rounded mb-4">
+              <img src="https://images.squarespace-cdn.com/content/v1/6065dbd423870765d7cc67cf/1700565036456-ZQ6ZVQQ76T2CTPXCIGGA/_MG_4300.jpg?format=1500w" alt="HP ProDesk 400 G4 SFF" class="rounded mb-4 h-48 w-full object-cover">
               <h3 class="font-semibold text-xl mb-2">HP ProDesk 400 G4 SFF</h3>
               <p class="text-slate-300 mb-4">i5 7th Gen, 8GB RAM, 240GB SSD, Windows 11 Desktop. Refurbished.</p>
               <p class="text-slate-400 font-semibold">£110</p>
               <a href="store/HP-ProDesk-400-G4-SFF.html" class="mt-4 inline-block px-4 py-2 rounded-lg bg-cyan-500 text-white font-bold text-center w-full hover:bg-cyan-600 transition">View Details</a>
             </div>
           </div>
+        </div>
+        <div class="flex justify-center mt-12">
+          <a href="store/custom-pc-builder.html" class="inline-block px-8 py-4 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white text-xl font-extrabold shadow-lg transition focus-ring" style="box-shadow: 0 8px 32px 0 #10b98155; background: linear-gradient(90deg, var(--emerald, #10b981), var(--primary));">Build a Custom PC</a>
         </div>
       </div>
     </section>

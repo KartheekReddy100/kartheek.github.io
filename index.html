@@ -184,7 +184,7 @@
     #scrollTopBtn {
       display: none;
       position: fixed;
-      bottom: 2.5rem;
+      bottom: 6.5rem;
       right: 2.5rem;
       z-index: 50;
       background: linear-gradient(90deg, var(--primary), var(--accent));
@@ -216,7 +216,6 @@
     /* Section fade/slide-in animation */
     .fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.7s, transform 0.7s; }
     .fade-up.is-visible { opacity: 1; transform: none; }
-    /* ...existing code... */
   </style>
   <link rel="icon" type="image/png" href="/favicon.png" />
   <!-- Structured data (Person) -->
@@ -286,7 +285,7 @@
 
   <main id="main" class="pt-20">
     <!-- Scroll-to-top button -->
-    <button id="scrollTopBtn" aria-label="Scroll to top">↑</button>
+    <button id="scrollTopBtn" aria-label="Scroll to top" class="right-5 bottom-24 md:bottom-24">↑</button>
 
     <!-- Hero -->
     <section class="hero-gradient relative overflow-hidden">
@@ -600,7 +599,7 @@
     </section>
 
     <!-- Floating CTA -->
-    <a id="floatCta" href="#contact" class="fixed bottom-5 right-5 z-40 px-4 py-3 rounded-xl bg-cyan-500/20 border border-cyan-400/40 text-cyan-100 backdrop-blur hover:bg-cyan-500/30 floating-cta">Hire me</a>
+    <a id="floatCta" href="#contact" class="fixed bottom-5 right-5 z-40 px-5 py-3 rounded-2xl bg-emerald-500/90 border border-emerald-400/40 text-white font-bold shadow-lg hover:bg-emerald-600/90 transition floating-cta" style="box-shadow: 0 8px 32px 0 #10b98155;">Hire me</a>
 
   <footer class="border-t border-white/10 text-center text-sm text-slate-400 py-6">
     <p>© <span id="year"></span> N. S. S. Kartheek Reddy. All rights reserved.</p>

@@ -58,6 +58,20 @@
     }
     .focus-ring{outline:2px solid transparent;outline-offset:2px;transition:box-shadow .2s}
     .focus-ring:focus{box-shadow:0 0 0 2px var(--ring)}
+    .store-btn, .store-btn-main {
+      border-radius: 1.4rem;
+      font-size: 1.13rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--emerald, #10b981), var(--primary));
+      color: #fff;
+      box-shadow: 0 8px 32px 0 #10b98155;
+      border: none;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .store-btn:hover, .store-btn-main:hover {
+      background: linear-gradient(90deg, var(--primary), var(--emerald, #10b981));
+      box-shadow: 0 8px 32px 0 #0ea5e9cc;
+    }
   </style>
 </head>
 <body>
@@ -117,7 +131,7 @@
             <div class="mb-8">
               <span class="text-2xl font-bold text-cyan-400">£110</span>
             </div>
-            <a href="mailto:kartheekreddysec@gmail.com?subject=Enquiry%20for%20HP%20ProDesk%20400%20G4%20SFF" class="block w-full text-center py-4 rounded-xl bg-cyan-500 hover:bg-cyan-600 text-white text-lg font-bold transition mb-4">Enquire</a>
+            <a href="mailto:kartheekreddysec@gmail.com?subject=Enquiry%20for%20HP%20ProDesk%20400%20G4%20SFF" class="block w-full text-center py-4 rounded-2xl store-btn-main mt-2">Enquire</a>
           </div>
         </div>
       </div>

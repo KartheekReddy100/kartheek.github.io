@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Build a Custom PC — Kartheek Reddy Store</title>
+  <meta name="description" content="Build your own custom PC. Choose case, processor, memory, storage, GPU, and more. Get a price estimate and send a request." />
+  <link rel="canonical" href="https://kartheekreddy.com/store/custom-pc-builder.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Roboto+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <meta name="theme-color" content="#0ea5e9" />
+  <style>
+    :root{
+      --primary: #00d2ff;
+      --accent: #a855f7;
+      --bg-dark: #0b1220;
+      --bg-mid: #131c2b;
+      --card: #1b2434;
+      --ring: rgba(0,210,255,.25);
+      --heading-font: 'Inter', system-ui, sans-serif;
+      --body-font: 'Inter', system-ui, sans-serif;
+    }
+    html{scroll-behavior:smooth}
+    body{
+      font-family: var(--body-font);
+      font-size: 1.08rem;
+      line-height: 1.7;
+      letter-spacing: 0.01em;
+      color: #e2e8f0;
+      background: var(--bg-dark);
+    }
+    h1, .text-4xl, .text-6xl {
+      font-family: var(--heading-font);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      line-height: 1.13;
+      color: #fff;
+    }
+    h2, .section-heading {
+      font-family: var(--heading-font);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.18;
+      color: #e0e7ef;
+    }
+    .focus-ring{outline:2px solid transparent;outline-offset:2px;transition:box-shadow .2s}
+    .focus-ring:focus{box-shadow:0 0 0 2px var(--ring)}
+    .desc { font-size: 0.98rem; color: #a5b4fc; margin-bottom: 0.5rem; }
+    .section-heading { margin-bottom: 0.2rem; }
+    .store-btn, .store-btn-main {
+      border-radius: 1.4rem;
+      font-size: 1.13rem;
+      font-weight: 700;
+      background: linear-gradient(90deg, var(--emerald, #10b981), var(--primary));
+      color: #fff;
+      box-shadow: 0 8px 32px 0 #10b98155;
+      border: none;
+      transition: background 0.2s, box-shadow 0.2s;
+    }
+    .store-btn:hover, .store-btn-main:hover {
+      background: linear-gradient(90deg, var(--primary), var(--emerald, #10b981));
+      box-shadow: 0 8px 32px 0 #0ea5e9cc;
+    }
+  </style>
+</head>
+<body>
+  <header id="site-header" class="fixed top-0 inset-x-0 z-50 backdrop-blur border-b border-white/10 bg-slate-900/80 transition-transform">
+    <nav class="mx-auto max-w-6xl px-4">
+      <div class="flex items-center justify-between h-16">
+        <a href="../index.html" class="font-extrabold tracking-tight text-white text-lg md:text-xl">Kartheek<span class="text-cyan-400">.sec</span></a>
+        <button id="menuBtn" class="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-lg hover:bg-white/5 focus-ring" aria-expanded="false" aria-controls="mobileNav" aria-label="Open menu">
+          <svg width="24" height="24" fill="none" stroke="currentColor" class="opacity-80"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+        <ul class="hidden md:flex items-center gap-6 text-slate-300">
+          <li><a class="hover:text-white/90 focus-ring" href="../index.html#about">About</a></li>
+          <li><a class="hover:text-white/90 focus-ring" href="../index.html#projects">Projects</a></li>
+          <li><a class="hover:text-white/90 focus-ring" href="../store.html">Shop</a></li>
+          <li><a class="hover:text-white/90 focus-ring" href="../index.html#contact">Contact</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div id="mobileNav" class="md:hidden hidden border-t border-white/10 bg-slate-900/90">
+      <ul class="max-w-6xl mx-auto px-4 py-4 space-y-2">
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="../index.html#about">About</a></li>
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="../index.html#projects">Projects</a></li>
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="../store.html">Shop</a></li>
+        <li><a class="block px-2 py-2 rounded-lg hover:bg-white/5" href="../index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <main id="main" class="pt-20">
+    <section class="px-6 py-12 md:py-20">
+      <div class="mx-auto max-w-2xl">
+        <h1 class="text-3xl md:text-4xl font-bold mb-8">Build a Custom PC</h1>
+        <form id="pcBuilderForm" class="space-y-8 bg-slate-900/60 p-6 rounded-2xl shadow-lg">
+          <div>
+            <h2 class="section-heading text-xl">Case</h2>
+            <div class="desc">Choose your preferred case size and style.</div>
+            <select name="case" class="w-full rounded-lg p-2 bg-slate-800 text-white" required>
+              <option value="" disabled selected>Select a case</option>
+              <option value="35">Mini Tower (£35)</option>
+              <option value="50">Mid Tower (£50)</option>
+              <option value="80">Full Tower (£80)</option>
+            </select>
+          </div>
+          <div>
+            <h2 class="section-heading text-xl">Processor</h2>
+            <div class="desc">Balanced for your needs. All CPUs include cooler.</div>
+            <select name="cpu" class="w-full rounded-lg p-2 bg-slate-800 text-white" required>
+              <option value="" disabled selected>Select a processor</option>
+              <option value="60">Intel i3 10th Gen (£60)</option>
+              <option value="95">Intel i5 10th Gen (£95)</option>
+              <option value="170">Intel i7 10th Gen (£170)</option>
+              <option value="65">AMD Ryzen 3 3200G (£65)</option>
+              <option value="110">AMD Ryzen 5 3600 (£110)</option>
+              <option value="180">AMD Ryzen 7 3700X (£180)</option>
+            </select>
+          </div>
+          <div>
+            <h2 class="section-heading text-xl">Memory (RAM)</h2>
+            <div class="desc">DDR4, 2666MHz or faster.</div>
+            <select name="ram" class="w-full rounded-lg p-2 bg-slate-800 text-white" required>
+              <option value="" disabled selected>Select RAM</option>
+              <option value="25">8GB (£25)</option>
+              <option value="45">16GB (£45)</option>
+              <option value="85">32GB (£85)</option>
+            </select>
+          </div>
+          <div>
+            <h2 class="section-heading text-xl">Storage</h2>
+            <div class="desc">Fast SSDs for OS, HDD for extra space.</div>
+            <select name="storage" class="w-full rounded-lg p-2 bg-slate-800 text-white" required>
+              <option value="" disabled selected>Select storage</option>
+              <option value="30">256GB SSD (£30)</option>
+              <option value="45">512GB SSD (£45)</option>
+              <option value="75">1TB SSD (£75)</option>
+              <option value="35">1TB HDD (£35)</option>
+            </select>
+          </div>
+          <div>
+            <h2 class="section-heading text-xl">Graphics Card (GPU)</h2>
+            <div class="desc">Choose integrated for office/browsing, or a dedicated card for gaming/design.</div>
+            <select name="gpu" class="w-full rounded-lg p-2 bg-slate-800 text-white" required>
+              <option value="" disabled selected>Select GPU</option>
+              <option value="0">Integrated Graphics (£0)</option>
+              <option value="90">NVIDIA GTX 1650 (£90)</option>
+              <option value="170">NVIDIA RTX 3060 (£170)</option>
+              <option value="320">NVIDIA RTX 4060 (£320)</option>
+              <option value="120">AMD Radeon RX 6600 (£120)</option>
+            </select>
+          </div>
+          <div>
+            <h2 class="section-heading text-xl">Optional</h2>
+            <div class="desc">Add extras for convenience or style.</div>
+            <div class="flex flex-col gap-2">
+              <label class="inline-flex items-center"><input type="checkbox" name="optical" value="15" class="mr-2">DVD Drive (+£15)</label>
+              <label class="inline-flex items-center"><input type="checkbox" name="wifi" value="10" class="mr-2">WiFi Adapter (+£10)</label>
+              <label class="inline-flex items-center"><input type="checkbox" name="rgb" value="15" class="mr-2">RGB Lighting (+£15)</label>
+              <label class="inline-flex items-center"><input type="checkbox" name="cardreader" value="8" class="mr-2">Card Reader (+£8)</label>
+            </div>
+          </div>
+          <div class="mt-8 p-6 rounded-xl bg-slate-800 text-center">
+            <div class="text-lg mb-2">Estimated Price:</div>
+            <div id="estimate" class="text-3xl font-bold text-cyan-400">£0</div>
+            <button type="submit" class="mt-6 w-full py-4 rounded-2xl store-btn-main text-lg font-bold transition">Send Request</button>
+            <div class="text-xs text-slate-400 mt-2">* Final price may vary based on availability and your requirements.</div>
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-white/10 text-center text-sm text-slate-400 py-6">
+    <p>© <span id="year"></span> N. S. S. Kartheek Reddy. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Estimate calculation
+    const form = document.getElementById('pcBuilderForm');
+    const estimate = document.getElementById('estimate');
+    form.addEventListener('change', () => {
+      let total = 0;
+      const selects = form.querySelectorAll('select');
+      selects.forEach(sel => {
+        if (sel.value) total += parseInt(sel.value);
+      });
+      form.querySelectorAll('input[type=checkbox]:checked').forEach(cb => {
+        total += parseInt(cb.value);
+      });
+      estimate.textContent = '£' + total;
+    });
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+    // Send Request
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      let summary = '';
+      const selects = form.querySelectorAll('select');
+      selects.forEach(sel => {
+        const label = sel.previousElementSibling.previousElementSibling.textContent;
+        const option = sel.options[sel.selectedIndex].text;
+        summary += `${label}: ${option}\n`;
+      });
+      form.querySelectorAll('input[type=checkbox]').forEach(cb => {
+        if (cb.checked) summary += `${cb.parentElement.textContent.trim()}\n`;
+      });
+      summary += `Estimated Price: ${estimate.textContent}`;
+      window.location.href = `mailto:kartheekreddysec@gmail.com?subject=Custom%20PC%20Build%20Request&body=${encodeURIComponent(summary)}`;
+    });
+  </script>
+</body>
+</html>
