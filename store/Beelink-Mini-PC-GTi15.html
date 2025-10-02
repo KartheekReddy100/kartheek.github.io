@@ -68,14 +68,25 @@
       background: linear-gradient(90deg, var(--primary), var(--emerald, #10b981));
       box-shadow: 0 8px 32px 0 #0ea5e9cc;
     }
-    @media (max-width: 768px) {
-      .store-btn, .store-btn-main {
-        max-width: 100%;
-        min-width: 0;
-        font-size: 1.08rem;
-        padding: 1rem 0;
-      }
+    /* Gallery visuals */
+    .gallery-main { aspect-ratio: 16 / 10; background: #0f172a; border-radius: 1rem; display: grid; place-items: center; overflow: hidden; }
+    .gallery-main img { width: 100%; height: 100%; object-fit: cover; }
+    .thumb { border-radius: .75rem; cursor: pointer; transition: transform .2s ease, box-shadow .2s ease, outline-color .2s ease; outline: 2px solid transparent; }
+    .thumb:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(14,165,233,.25); }
+    .thumb.active { outline-color: #22d3ee; }
+
+    /* Lift on product column */
+    .pdp-card { transition: transform .25s ease, box-shadow .25s ease; }
+    .pdp-card:hover { transform: translateY(-4px); }
+
+    /* Mobile sticky enquire CTA */
+    .mobile-cta {
+      position: fixed; left: 0; right: 0; bottom: 0; z-index: 40;
+      display: none; padding: .75rem 1rem; background: rgba(2,6,23,.8); backdrop-filter: blur(8px);
+      border-top: 1px solid rgba(255,255,255,.08);
     }
+    .mobile-cta .store-btn-main { max-width: 640px; margin: 0 auto; display: block; }
+    @media (max-width: 768px) { .mobile-cta { display: block; } }
   </style>
 </head>
 <body>
@@ -108,15 +119,16 @@
       <div class="mx-auto max-w-4xl">
         <div class="flex flex-col md:flex-row gap-10">
           <div class="md:w-1/2 flex flex-col gap-4">
-            <div class="rounded-xl overflow-hidden bg-slate-800">
-              <img src="https://m.media-amazon.com/images/I/41WoSO19UEL._AC_SL1500_.jpg" alt="Front view of Beelink Mini PC GTi15" class="w-full h-auto rounded-xl">
+            <div class="gallery-main">
+              <img id="mainImg" src="https://m.media-amazon.com/images/I/41WoSO19UEL._AC_SL1500_.jpg" alt="Front view of Beelink Mini PC GTi15" class="rounded-xl">
             </div>
             <div class="flex gap-2 mt-2">
-              <img src="https://m.media-amazon.com/images/I/61C7mZ54MqL._AC_SL1500_.jpg" alt="Side view" class="w-1/3 h-auto rounded-lg">
-              <img src="https://m.media-amazon.com/images/I/61bZAvDRwbL._AC_SL1500_.jpg" alt="Back view" class="w-1/3 h-auto rounded-lg">
+              <img data-src="https://m.media-amazon.com/images/I/41WoSO19UEL._AC_SL1500_.jpg" alt="Front view" class="thumb active w-1/3 h-auto rounded-lg">
+              <img data-src="https://m.media-amazon.com/images/I/61C7mZ54MqL._AC_SL1500_.jpg" alt="Side view" class="thumb w-1/3 h-auto rounded-lg">
+              <img data-src="https://m.media-amazon.com/images/I/61bZAvDRwbL._AC_SL1500_.jpg" alt="Back view" class="thumb w-1/3 h-auto rounded-lg">
             </div>
           </div>
-          <div class="md:w-1/2">
+          <div class="md:w-1/2 pdp-card">
             <h1 class="text-3xl md:text-4xl font-bold mb-4">Beelink Mini PC GTi15</h1>
             <span class="inline-block bg-emerald-400/90 text-emerald-900 text-xs font-bold px-3 py-1 rounded-full mb-2" aria-label="Brand New">Brand New</span>
             <p class="text-slate-300 mb-2">Intel Core Ultra 9 285H (16C/16T, up to 5.4GHz) | 64GB DDR5 | 1TB PCIe4.0 SSD | AI Mini Computer | Windows 11 Pro</p>
@@ -140,6 +152,10 @@
       </div>
     </section>
   </main>
+  <!-- Mobile sticky enquire CTA -->
+  <div class="mobile-cta">
+    <a href="mailto:kartheekreddysec@gmail.com?subject=Enquiry%20for%20Beelink%20Mini%20PC%20GTi15" class="store-btn-main text-center">Enquire about GTi15</a>
+  </div>
   <footer class="border-t border-white/10 text-center text-sm text-slate-400 py-6">
     <div class="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto px-4 gap-2">
       <div>
@@ -178,6 +194,19 @@
       else header.style.transform = '';
       lastY = y;
     });
+    // PDP gallery: swap main image on thumb click
+    (function(){
+      const main = document.getElementById('mainImg');
+      const thumbs = Array.from(document.querySelectorAll('.thumb'));
+      if (!main || !thumbs.length) return;
+      thumbs.forEach(t => t.addEventListener('click', () => {
+        const src = t.getAttribute('data-src');
+        if (!src || main.src === src) return;
+        main.src = src;
+        thumbs.forEach(x => x.classList.remove('active'));
+        t.classList.add('active');
+      }));
+    })();
   </script>
 </body>
 </html>

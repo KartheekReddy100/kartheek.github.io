@@ -21,6 +21,13 @@
       --ring: rgba(0,210,255,.25);
       --heading-font: 'Inter', system-ui, sans-serif;
       --body-font: 'Inter', system-ui, sans-serif;
+      --radius: 1.4rem;
+      --radius-lg: 1.8rem;
+      --container: 68rem;
+      --link: #22d3ee;
+      --link-hover: #a855f7;
+      --muted: #94a3b8;
+      --text: #e2e8f0;
     }
     html{scroll-behavior:smooth}
     body{
@@ -96,19 +103,73 @@
       text-align: center;
     }
     .back-link {
-      color: #22d3ee;
-      font-weight: 600;
-      text-decoration: underline;
-      margin-bottom: 2rem;
-      display: inline-block;
+      text-decoration: none; color: var(--link);
+      display: inline-flex; align-items: center; gap: .5rem;
+      border: 1px solid #1f2937; background: rgba(148,163,184,.08);
+      padding: .5rem .9rem; border-radius: 999px;
+      transition: background .2s, border-color .2s, color .2s;
     }
-    .prose hr {
-      border-color: #334155;
-      margin: 2rem 0;
+    .back-link:hover { background: rgba(148,163,184,.15); color: var(--link-hover); border-color: #334155; }
+    .focus-ring:focus-visible {
+      outline: 2px solid var(--ring); outline-offset: 2px; border-radius: .6rem;
+    }
+    .prose p { margin: 1rem 0; }
+    .prose h2, .prose h3 { scroll-margin-top: 6rem; }
+    .prose blockquote {
+      border-left: 3px solid var(--link);
+      padding-left: 1rem; color: #cbd5e1; background: rgba(148,163,184,.06);
+      border-radius: .5rem; margin: 1.2rem 0; padding-block: .7rem;
+    }
+    .prose code {
+      background: rgba(148,163,184,.12); color: #e5e7eb;
+      padding: .15rem .4rem; border-radius: .35rem; font-size: .95em;
+    }
+    .prose pre {
+      background: #0f172a; color: #e5e7eb; padding: 1rem 1.2rem;
+      border-radius: .9rem; overflow: auto; border: 1px solid #1f2937;
+    }
+    .prose table {
+      width: 100%; border-collapse: collapse; border: 1px solid #263044; border-radius: .8rem; overflow: hidden;
+    }
+    .prose th, .prose td { border-bottom: 1px solid #263044; padding: .7rem .8rem; }
+    .prose tr:nth-child(even) { background: rgba(148,163,184,.06); }
+
+    /* Slim reading progress bar (top) */
+    #read-progress {
+      position: fixed; top: 0; left: 0; height: 3px; width: 0%;
+      background: linear-gradient(90deg, var(--primary), var(--accent));
+      box-shadow: 0 0 8px var(--ring); z-index: 60;
+      transition: width .1s linear;
+    }
+
+    /* Disqus section constrained to content width with spacing */
+    .comments-section { margin: 2.5rem 0 1rem; }
+    .comments-section .comments-card {
+      background: rgba(30,41,59,0.6);
+      border: 1px solid #263044;
+      border-radius: var(--radius-lg);
+      padding: 1.2rem;
+      box-shadow: 0 8px 32px 0 rgba(14,165,233,0.08);
+    }
+
+    /* Header backdrop refinement */
+    header { backdrop-filter: saturate(1.2) blur(10px); }
+
+    /* Better text selection & anchor color */
+    ::selection { background: rgba(34,211,238,.25); color: #fff; }
+    a { color: var(--link); text-decoration: underline; }
+    a:hover { color: var(--link-hover); }
+
+    @media (max-width: 640px) {
+      .section-heading { font-size: 2.2rem; }
+      .comments-section .comments-card { padding: .9rem; }
     }
   </style>
 </head>
 <body class="bg-[var(--bg-dark)] text-slate-200 selection:bg-cyan-500/30">
+  <!-- Slim progress bar -->
+  <div id="read-progress" aria-hidden="true"></div>
+
   <!-- Header -->
   <header class="fixed top-0 inset-x-0 z-50 backdrop-blur border-b border-white/10 bg-slate-900/80 transition-transform">
     <nav class="mx-auto max-w-6xl px-4 flex items-center justify-between h-16">
@@ -158,30 +219,16 @@
         </article>
       </div>
     </div>
+    <!-- Disqus (constrained, above footer) -->
+    <section class="comments-section">
+      <div class="container">
+        <h2 class="section-heading">Comments</h2>
+        <div class="comments-card">
+          <div id="disqus_thread"></div>
+        </div>
+      </div>
+    </section>
   </main>
-  <div style="max-width: 900px; margin: 3rem auto 2rem auto; padding: 0 1rem;">
-    <div id="disqus_thread"></div>
-  </div>
-  <script>
-    /**
-    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-    /*
-    var disqus_config = function () {
-    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-    };
-    */
-    (function() { // DON'T EDIT BELOW THIS LINE
-    var d = document, s = d.createElement('script');
-    s.src = 'https://kartheekreddy-com.disqus.com/embed.js';
-    s.setAttribute('data-timestamp', +new Date());
-    (d.head || d.body).appendChild(s);
-    })();
-  </script>
-  <noscript>
-    Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
-  </noscript>
   <footer class="border-t border-white/10 text-center text-sm text-slate-400 py-6 mt-10">
     <div class="flex flex-col md:flex-row items-center justify-between max-w-6xl mx-auto px-4 gap-2">
       <div>
@@ -199,7 +246,32 @@
     </div>
   </footer>
   <script>
+    // Disqus embed
+    (function() {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://kartheekreddy-com.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+
+    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Reading progress (honor reduced motion)
+    (function(){
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const bar = document.getElementById('read-progress');
+      const main = document.getElementById('main');
+      if (!bar || !main) return;
+      const onScroll = () => {
+        const rect = main.getBoundingClientRect();
+        const docH = main.scrollHeight - window.innerHeight;
+        const scrolled = Math.max(0, Math.min(1, window.scrollY / (docH || 1)));
+        bar.style.width = (scrolled * 100).toFixed(2) + '%';
+      };
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    })();
   </script>
 </body>
 </html>

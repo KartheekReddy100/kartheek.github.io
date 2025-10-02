@@ -89,6 +89,20 @@
       background: linear-gradient(90deg, var(--primary), var(--emerald, #10b981));
       box-shadow: 0 8px 32px 0 #0ea5e9cc;
     }
+    /* Product image ratio to prevent CLS and unify visuals */
+    .product-img { aspect-ratio: 16 / 9; object-fit: cover; width: 100%; border-radius: .75rem; }
+
+    /* Lift and transitions */
+    .card-gradient .card { transition: transform .25s ease, box-shadow .25s ease, background .25s ease; }
+    .card-gradient .card:hover { transform: translateY(-6px) scale(1.01); }
+
+    /* Filter/sort buttons active + focus */
+    .filter-btn, .sort-btn { transition: background .2s ease, border-color .2s ease, color .2s ease; }
+    .filter-btn:focus-visible, .sort-btn:focus-visible { box-shadow: 0 0 0 2px var(--ring); border-radius: .6rem; }
+
+    /* Dotted background utility (for optional section use) */
+    .grid-dots { background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px); background-size: 22px 22px; }
+
     @media (max-width: 768px) {
       .store-btn, .store-btn-main {
         max-width: 100%;
@@ -151,7 +165,7 @@
           <div class="card-gradient" data-tags="refurbished" data-price="80">
             <div class="card p-6 rounded-xl">
               <span class="inline-block bg-yellow-400/90 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full mb-2" aria-label="Refurbished">Refurbished</span>
-              <img src="https://i.postimg.cc/c4LgkwY1/s-l1600.webp" alt="MINI PC HP EliteDesk 260G3" class="rounded mb-4 h-48 w-full object-cover" loading="lazy">
+              <img src="https://i.postimg.cc/c4LgkwY1/s-l1600.webp" alt="MINI PC HP EliteDesk 260G3" class="product-img mb-4" loading="lazy">
               <h3 class="font-semibold text-xl mb-2">MINI PC HP EliteDesk 260G3</h3>
               <p class="text-slate-300 mb-4">i5 7th Gen, 4GB RAM, 256GB SSD, Tiny PC, Windows 11.</p>
               <p class="text-slate-400 font-semibold">£80</p>
@@ -161,7 +175,7 @@
           <div class="card-gradient" data-tags="refurbished" data-price="110">
             <div class="card p-6 rounded-xl">
               <span class="inline-block bg-yellow-400/90 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full mb-2" aria-label="Refurbished">Refurbished</span>
-              <img src="https://images.squarespace-cdn.com/content/v1/6065dbd423870765d7cc67cf/1700565036456-ZQ6ZVQQ76T2CTPXCIGGA/_MG_4300.jpg?format=1500w" alt="HP ProDesk 400 G4 SFF" class="rounded mb-4 h-48 w-full object-cover" loading="lazy">
+              <img src="https://images.squarespace-cdn.com/content/v1/6065dbd423870765d7cc67cf/1700565036456-ZQ6ZVQQ76T2CTPXCIGGA/_MG_4300.jpg?format=1500w" alt="HP ProDesk 400 G4 SFF" class="product-img mb-4" loading="lazy">
               <h3 class="font-semibold text-xl mb-2">HP ProDesk 400 G4 SFF</h3>
               <p class="text-slate-300 mb-4">i5 7th Gen, 8GB RAM, 240GB SSD, Windows 11 Desktop. Refurbished.</p>
               <p class="text-slate-400 font-semibold">£110</p>
@@ -171,7 +185,7 @@
           <div class="card-gradient" data-tags="custom" data-price="1299">
             <div class="card p-6 rounded-xl">
               <span class="inline-block bg-emerald-400/90 text-emerald-900 text-xs font-bold px-3 py-1 rounded-full mb-2" aria-label="Brand New">Brand New</span>
-              <img src="https://m.media-amazon.com/images/I/41WoSO19UEL._AC_SL1500_.jpg" alt="Beelink Mini PC GTi15" class="rounded mb-4 h-48 w-full object-cover" loading="lazy">
+              <img src="https://m.media-amazon.com/images/I/41WoSO19UEL._AC_SL1500_.jpg" alt="Beelink Mini PC GTi15" class="product-img mb-4" loading="lazy">
               <h3 class="font-semibold text-xl mb-2">Beelink Mini PC GTi15</h3>
               <p class="text-slate-300 mb-4">Ultra 9 285H, 64GB DDR5, 1TB PCIe4.0 SSD, 4K Triple Display, USB4.0, 10G LAN, WiFi 7, BT5.4, Windows 11 Pro. AI Mini Computer.</p>
               <p class="text-slate-400 font-semibold">£1,299.00</p>

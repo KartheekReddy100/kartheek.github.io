@@ -216,6 +216,29 @@
     /* Section fade/slide-in animation */
     .fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.7s, transform 0.7s; }
     .fade-up.is-visible { opacity: 1; transform: none; }
+
+    /* Reusable dotted grid background (used in hero) */
+    .grid-dots {
+      background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+      background-size: 22px 22px;
+    }
+
+    /* Global focus and link polish */
+    a { text-underline-offset: 3px; text-decoration-thickness: 1.5px; transition: color .2s ease; }
+    .focus-ring, a, button, [role="button"] { outline: 2px solid transparent; outline-offset: 2px; }
+    .focus-ring:focus-visible, a:focus-visible, button:focus-visible { box-shadow: 0 0 0 2px var(--ring); border-radius: .6rem; }
+
+    /* Card lift and smooth transitions */
+    .card { transition: transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease; }
+    .card:hover { transform: translateY(-4px); }
+
+    /* Image polish */
+    img { image-rendering: auto; }
+    .hover-zoom img { transition: transform .3s ease; }
+    .hover-zoom:hover img { transform: scale(1.03); }
+
+    /* Section anchors spacing for in-page nav */
+    .section-heading { scroll-margin-top: 6rem; }
   </style>
   <link rel="icon" type="image/png" href="/favicon.png" />
   <!-- Structured data (Person) -->
